@@ -1,0 +1,226 @@
+/* Site header, menu panel, breaking band and the condensed bar */
+
+/* ───────────────────────── Header ───────────────────────── */
+.site-header {
+  container: hdr / inline-size;
+  position: relative; z-index: 30;
+  background: var(--bg); color: var(--text); font-family: var(--sans);
+  --logo-h: auto;
+}
+.hdr {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "time tools" "brand brand" "nav nav" "live live";
+  align-items: center;
+  column-gap: var(--sp-4);
+  border-bottom: 1px solid var(--rule-strong);
+}
+.hdr__time {
+  grid-area: time; display: flex; align-items: baseline; gap: var(--sp-3); min-width: 0;
+  font: 500 var(--t-meta)/1 var(--sans); color: var(--meta); font-variant-numeric: tabular-nums;
+}
+.hdr__date { margin: 0; white-space: nowrap; }
+.hdr__date-long { display: none; }
+.hdr__clock { color: var(--text); font-weight: 700; }
+.hdr__sep { margin-inline: .45em; color: var(--stone-400); }
+.hdr__updated { margin: 0; white-space: nowrap; display: none; }
+.site-header[data-news="calm"] .hdr__updated { display: block; }
+
+.hdr__brand { grid-area: brand; display: block; padding-block: var(--sp-1) var(--sp-4); }
+.hdr__brand img { display: block; width: 100%; height: auto; }
+
+.hdr__nav {
+  grid-area: nav; min-width: 0;
+  margin-inline: calc(-1 * var(--margin)); padding-inline: var(--margin);
+  border-top: 1px solid var(--rule);
+  overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain;
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 3rem), transparent);
+  mask-image: linear-gradient(90deg, #000 calc(100% - 3rem), transparent);
+}
+.hdr__nav::-webkit-scrollbar { display: none; }
+.hdr__nav ul { display: flex; gap: var(--sp-6); width: max-content; margin: 0; padding: 0 3rem 0 0; list-style: none; }
+.hdr__nav li:nth-child(5) { position: relative; padding-inline-start: var(--sp-6); }
+.hdr__nav li:nth-child(5)::before {
+  content: ""; position: absolute; left: 0; top: var(--div-top, 13px); width: 1px; height: 17px; background: var(--stone-300);
+}
+.hdr__nav a {
+  position: relative; display: block; padding-block: 14px 16px;
+  font: 600 var(--t-ui)/1 var(--sans); color: var(--text); text-decoration: none; white-space: nowrap;
+}
+/* the leaf rests on the rule under the section you're in, and under the one you point at */
+.hdr__nav a::after {
+  content: ""; position: absolute; left: 50%; bottom: 3px; width: 13px; aspect-ratio: var(--leaf-ratio);
+  translate: -50% 0; background: currentColor; scale: 0; transform-origin: 50% 100%;
+  -webkit-mask: url("../img/brand/leaf.svg") center / contain no-repeat; mask: url("../img/brand/leaf.svg") center / contain no-repeat;
+  transition: scale .3s var(--ease);
+}
+.hdr__nav a:hover::after, .hdr__nav a[aria-current="page"]::after { scale: 1; }
+.hdr__nav a[aria-current="page"] { color: var(--text); }
+
+.hdr__tools { grid-area: tools; display: flex; align-items: center; margin-inline-end: -10px; }
+/* Menu: the mark is the menu. Hover lights it up; open turns it into the triskelion. */
+.stack { position: relative; display: inline-block; width: 20px; height: 20px; flex: none; }
+.stack i {
+  position: absolute; left: 2.3px; width: 15.4px; height: 6.67px; background: currentColor;
+  -webkit-mask: url("../img/brand/leaf.svg") center / contain no-repeat; mask: url("../img/brand/leaf.svg") center / contain no-repeat;
+  transform-origin: 50% 100%;
+  transition: top .45s var(--ease), rotate .45s var(--ease), background-color .2s;
+}
+.stack i:nth-child(1) { top: 0; }
+.stack i:nth-child(2) { top: 6.67px; }
+.stack i:nth-child(3) { top: 13.33px; }
+.tool--menu:hover .stack i:nth-child(1), .tool--menu[aria-expanded="true"] .stack i:nth-child(1) { background: var(--now); }
+.tool--menu:hover .stack i:nth-child(2), .tool--menu[aria-expanded="true"] .stack i:nth-child(2) { background: var(--context); }
+.tool--menu:hover .stack i:nth-child(3), .tool--menu[aria-expanded="true"] .stack i:nth-child(3) { background: var(--tot-ink); }
+.tool--menu:hover { color: var(--text); }
+.tool--menu[aria-expanded="true"] .stack i { top: 3.33px; }
+.tool--menu[aria-expanded="true"] .stack i:nth-child(2) { rotate: 120deg; }
+.tool--menu[aria-expanded="true"] .stack i:nth-child(3) { rotate: 240deg; }
+
+/* Live line */
+.hdr__live {
+  grid-area: live; display: flex; align-items: center; gap: var(--sp-2); min-width: 0; min-height: 44px;
+  margin-inline: calc(-1 * var(--margin)); padding-inline: var(--margin);
+  border-top: 1px solid var(--rule);
+  color: var(--now); text-decoration: none; font: 500 var(--t-ui)/1.2 var(--sans);
+}
+.hdr__live .lf { --lf: 15px; }
+.hdr__live-tag { font-weight: 800; }
+.hdr__live-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); }
+.hdr__live:hover .hdr__live-text { text-decoration: underline; text-decoration-color: var(--now); text-underline-offset: .2em; }
+.hdr__live .arrow { color: var(--now); margin-inline-start: auto; }
+.site-header:not([data-news="live"]) .hdr__live { display: none; }
+
+/* Breaking: the whole top edge turns to "now" */
+.breaking { display: none; background: var(--now); color: #fff; }
+.site-header[data-news="breaking"] .breaking { display: block; }
+.breaking__inner {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center;
+  column-gap: var(--sp-3); row-gap: var(--sp-1); padding-block: var(--sp-3);
+}
+.breaking__label {
+  display: flex; align-items: center; gap: .45em; margin: 0;
+  font: 800 var(--t-meta)/1 var(--sans); letter-spacing: .01em;
+}
+.breaking__label .lf { --lf: 15px; color: #fff; }
+.breaking__text {
+  grid-column: 1 / -1; color: #fff; text-decoration: none;
+  font: 600 1.125rem/1.25 var(--serif); text-wrap: balance;
+}
+.breaking__text:hover { text-decoration: underline; text-underline-offset: .15em; }
+.breaking__time { grid-row: 1; grid-column: 2; justify-self: end; margin: 0; font: 600 var(--t-meta)/1 var(--sans); font-variant-numeric: tabular-nums; }
+.breaking :focus-visible { outline-color: #fff; }
+
+/* Menu panel */
+.menu { position: absolute; left: 0; right: 0; top: 100%; z-index: 40; background: var(--inv-bg); color: var(--inv-text); }
+.menu:not([data-open="true"]) { display: none; }
+.menu__inner { display: grid; gap: var(--sp-8); padding-block: var(--sp-7) var(--sp-10); }
+.menu :focus-visible { outline-color: var(--inv-context); }
+.menu__search-label { display: block; margin-bottom: var(--sp-2); font: 500 var(--t-meta)/1 var(--sans); color: var(--inv-meta); }
+.menu__search-row { display: flex; align-items: center; border-bottom: 1px solid var(--stone-600); }
+.menu__search-row:focus-within { border-bottom-color: var(--inv-context); }
+.menu__search input {
+  flex: 1; min-width: 0; min-height: 52px; padding: 0; border: 0; outline: 0; background: transparent;
+  color: var(--inv-text); font: italic 500 1.5rem/1.2 var(--serif);
+}
+.menu__search input::placeholder { color: var(--stone-500); }
+.menu__search .tool { color: var(--inv-text); }
+.menu__groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-8) var(--gutter); }
+.menu__group h2 { margin: 0 0 var(--sp-2); font: 500 var(--t-meta)/1 var(--sans); color: var(--inv-meta); }
+.menu__group ul { margin: 0; padding: 0; list-style: none; }
+.menu__group a {
+  display: block; padding-block: .55rem; color: var(--inv-text); text-decoration: none;
+  font: 600 1.3125rem/1.3 var(--serif);
+}
+.menu__group a:hover { text-decoration: underline; text-decoration-color: var(--inv-context); text-underline-offset: .15em; }
+
+/* Header — tablet */
+@container hdr (min-width: 720px) {
+  .hdr {
+    --logo-h: 52px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: "brand time time" "brand . tools" "nav nav nav" "live live live";
+    column-gap: var(--sp-7);
+    padding-top: var(--sp-5);
+  }
+  .hdr__brand { padding: 0 0 var(--sp-5); align-self: start; }
+  .hdr__brand img { width: auto; height: var(--logo-h); }
+  .hdr__time { align-self: start; padding-top: 1px; }
+  .hdr__date-long { display: inline; }
+  .hdr__date-short { display: none; }
+  .hdr__tools { align-self: end; padding-bottom: var(--sp-3); }
+  .tool--search .tool__label { position: static; width: auto; height: auto; overflow: visible; clip-path: none; }
+  .menu__groups { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .menu__inner { grid-template-columns: minmax(0, 1fr); }
+  .breaking__inner { grid-template-columns: auto minmax(0, 1fr) auto; column-gap: var(--sp-5); }
+  .breaking__text { grid-column: 2; grid-row: 1; font-size: 1.1875rem; }
+  .breaking__time { grid-column: 3; }
+}
+
+/* Header — desktop: the logo's two lines run on across the page.
+   Row 1 sits on the baseline of "The Times of", row 2 on the baseline of "Palestine". */
+@container hdr (min-width: 1280px) {
+  .hdr {
+    --logo-h: 64px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-rows: calc(var(--logo-h) * .195) auto;
+    grid-template-areas: "brand time live" "brand nav tools";
+    column-gap: var(--sp-8);
+    padding-top: var(--sp-6);
+  }
+  .hdr__brand { grid-row: 1 / 3; padding-bottom: var(--sp-5); }
+  .hdr__time { grid-area: time; align-self: end; padding: 0; margin-bottom: calc(-.2em - 1px); }
+  .hdr__nav {
+    align-self: end; margin: 0; padding: 0; border: 0; overflow: visible;
+    -webkit-mask-image: none; mask-image: none;
+  }
+  .hdr__nav ul { gap: var(--sp-5); padding: 0; }
+  .hdr__nav li:nth-child(5) { padding-inline-start: var(--sp-5); --div-top: -1px; }
+  .hdr__nav a { padding-block: 0 calc(var(--sp-5) + 1px); }
+  .hdr__nav a::after { bottom: 0; translate: -50% 50%; }
+  .hdr__tools { align-self: end; padding-bottom: calc(var(--sp-5) - 13px); }
+  .hdr__live {
+    grid-area: live; align-self: end; justify-self: end; min-height: 0;
+    margin: -6px 0 calc(-.2em - 7px); padding: 6px 0; border: 0; font-size: var(--t-meta);
+    max-width: 34rem;
+  }
+  .hdr__live .lf { --lf: 13px; }
+  .hdr__live .arrow { margin-inline-start: 0; }
+  .menu__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr); align-items: start; column-gap: var(--sp-11); }
+}
+
+/* ─────────────── Condensed bar (on scroll) ───────────────
+   Past the masthead, the header folds into one 56px line. The live signal stays.
+   js/main.js sets data-show once the masthead has scrolled out of view. */
+.minibar {
+  container: mb / inline-size;
+  position: fixed; inset: 0 0 auto; z-index: 2;
+  background: var(--bg); color: var(--text); font-family: var(--sans); border-bottom: 1px solid var(--rule-strong);
+  translate: 0 -100%; visibility: hidden;
+  transition: translate .3s var(--ease), visibility 0s linear .3s;
+}
+.minibar[data-show="true"] { translate: 0 0; visibility: visible; transition: translate .3s var(--ease); }
+.site-header:not([data-news="live"]) .minibar__live { visibility: hidden; }
+/* opened from the condensed bar, the menu hangs under it and scrolls on its own */
+.site-header.is-condensed .menu {
+  position: fixed; top: var(--bar-h); bottom: 0; overflow-y: auto; overscroll-behavior: contain;
+}
+.minibar__inner { display: flex; align-items: center; gap: var(--sp-5); min-height: 56px; }
+.minibar__brand { display: block; flex: none; }
+.minibar__brand img { display: block; width: auto; height: 28px; }
+.minibar__nav { display: none; }
+.minibar__nav ul { display: flex; gap: var(--sp-5); margin: 0; padding: 0; list-style: none; }
+.minibar__nav a { font: 600 var(--t-ui)/1 var(--sans); color: var(--text); text-decoration: none; }
+.minibar__nav a:hover { text-decoration: underline; text-underline-offset: .3em; text-decoration-color: var(--context); }
+.minibar__live { display: inline-flex; align-items: center; gap: .4em; margin-inline-start: auto; color: var(--now); font: 800 var(--t-meta)/1 var(--sans); text-decoration: none; }
+.minibar__live .lf { --lf: 14px; }
+.minibar .hdr__tools { margin-inline-end: -10px; }
+@container mb (max-width: 539.98px) {
+  .minibar__inner { gap: var(--sp-3); }
+  .minibar .tool--menu .tool__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
+@container mb (min-width: 1100px) {
+  .minibar__nav { display: block; margin-inline-start: var(--sp-4); }
+  .minibar .tool--search .tool__label { position: static; width: auto; height: auto; overflow: visible; clip-path: none; }
+}

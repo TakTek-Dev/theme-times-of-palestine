@@ -1,0 +1,10 @@
+/* ═════════════════════════ Section front ═════════════════════════ */
+.secp { container: secp / inline-size; }
+.secp__top { padding-block: var(--sp-6) 0; }
+.secp__mast { display: grid; row-gap: var(--sp-4); margin: var(--sp-5) 0 var(--sp-6); }
+.secp__title { margin: 0; font: italic 700 clamp(4rem, 2.2rem + 8cqi, 10rem)/.86 var(--serif); letter-spacing: -.035em; }
+.secp .perch-head__perch { font-size: var(--t-ui); margin-bottom: .1em; }
+.secp__dek { margin: 0; max-width: 46ch; font: 400 var(--t-dek)/1.42 var(--serif); color: var(--text-2); }
+@container secp (min-width: 720px) {
+  .secp__mast { grid-template-columns: auto minmax(0, 1fr); align-items: end; column-gap: var(--sp-8); }
+}

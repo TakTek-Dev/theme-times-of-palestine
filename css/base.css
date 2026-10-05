@@ -1,0 +1,54 @@
+/* Reset, document defaults and accessibility helpers */
+
+html {
+  -webkit-text-size-adjust: 100%; text-size-adjust: 100%;
+  scroll-padding-top: 4.5rem;   /* anchors land below the condensed bar */
+}
+.tot, .tot *, .tot *::before, .tot *::after { box-sizing: border-box; }
+.tot {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: var(--t-body);
+  line-height: 1.6;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+[hidden] { display: none !important; }
+:where(.tot) a { color: inherit; }
+:where(.tot) :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.tot ::selection { background: var(--red-100); color: var(--tot-ink); }
+:where(.tot) img { max-width: 100%; }
+:where(.tot) button, :where(.tot) input, :where(.tot) select { font: inherit; }
+.wrap { width: min(100% - 2 * var(--margin), var(--maxw)); margin-inline: auto; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
+}
+.skip {
+  position: absolute; z-index: 50; left: var(--margin); top: var(--sp-2);
+  width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  padding: var(--sp-3) var(--sp-4); background: var(--inv-bg); color: var(--inv-text);
+  font: 600 var(--t-ui)/1 var(--sans); text-decoration: none;
+}
+.skip:focus { width: auto; height: auto; overflow: visible; clip-path: none; }
+
+/* ───────────────────────── Motion ───────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .pulse { animation: none; }
+  .tot *, .tot *::before, .tot *::after { transition-duration: 1ms !important; }
+}
+
+/* ───────────────────────── Print ─────────────────────────
+   The record prints: headline, dek, byline, body, captions. The chrome stays home. */
+@media print {
+  .tot { background: #fff; font-size: 11pt; }
+  .skip, .minibar, .menu, .breaking, .hdr__nav, .hdr__tools, .hdr__live, .hdr__time,
+  .share, .nlbar, .newbar, .feed__more, .pager, .ftr__index, .ftr__bar, .ftr__standards,
+  .art__more, .art__spine, .gal__ctrl, .gal__strip, .toast, .site-footer { display: none !important; }
+  .theme-ink, .desk { background: #fff !important; color: #000 !important; }
+  .art__body a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .8em; }
+  img { break-inside: avoid; }
+}

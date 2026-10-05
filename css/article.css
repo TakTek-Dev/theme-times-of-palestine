@@ -1,0 +1,95 @@
+/* ═════════════════════════ Article ═════════════════════════ */
+.art { container: art / inline-size; }
+.art__grid { display: grid; grid-template-columns: minmax(0, 1fr); padding-bottom: var(--sp-10); }
+.art__top { padding-block: var(--sp-6) var(--sp-6); }
+.art__kicker { margin-top: var(--sp-5); }
+.art__title { margin: var(--sp-3) 0 0; max-width: 20ch; font: 700 var(--t-display)/.98 var(--serif); letter-spacing: -.022em; text-wrap: balance; }
+.art__dek { margin: var(--sp-5) 0 0; max-width: 46ch; font: 400 var(--t-dek)/1.42 var(--serif); color: var(--text-2); text-wrap: pretty; }
+.byline {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-4) var(--sp-6);
+  margin-top: var(--sp-6); padding-top: var(--sp-4); border-top: 1px solid var(--rule);
+}
+.byline__who { display: inline-flex; align-items: center; gap: var(--sp-3); color: var(--text); text-decoration: none; }
+.byline__who .portrait { width: 44px; font-size: .9rem; }
+.byline__who b { display: block; font: 700 var(--t-ui)/1.25 var(--sans); }
+.byline__who small { display: block; font: 500 var(--t-meta)/1.3 var(--sans); color: var(--meta); }
+.byline__who:hover b { text-decoration: underline; text-underline-offset: .2em; text-decoration-color: var(--context); }
+.byline__when { margin: 0; display: flex; flex-wrap: wrap; gap: .15em .5em; font: 500 var(--t-meta)/1.45 var(--sans); color: var(--meta); font-variant-numeric: tabular-nums; }
+.byline__when b { color: var(--text); font-weight: 600; }
+.byline__meta { display: grid; gap: var(--sp-2); }
+
+.art__lead { margin: 0 calc(-1 * var(--margin)); }
+.art__lead .photo { aspect-ratio: 3 / 2; }
+.art__lead .caption { padding-inline: var(--margin); }
+
+.art__body { position: relative; padding-top: var(--sp-7); font: 400 1.1875rem/1.66 var(--serif); }
+.art__body > p { margin: 0 0 1.1em; max-width: 66ch; text-wrap: pretty; }
+.art__body > h2 { margin: 1.5em 0 .5em; font: 600 var(--t-h2)/1.1 var(--serif); letter-spacing: -.012em; }
+.dateline { font: 800 .8125rem/1 var(--sans); letter-spacing: .06em; text-transform: uppercase; margin-right: .35em; }
+.art__body a { text-decoration-color: var(--context); text-underline-offset: .15em; }
+.art__body a:hover { text-decoration-thickness: 2px; }
+
+.pullquote { margin: 1.4em 0 1.6em; padding-block: var(--sp-5); border-top: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule); }
+.pullquote p { margin: 0; font: italic 600 clamp(1.5rem, 1.15rem + 1.3cqi, 2.375rem)/1.18 var(--serif); letter-spacing: -.01em; text-wrap: balance; }
+.pullquote .ar { display: block; text-align: left; margin-bottom: .35em; font: 600 1.15em/1.6 "Markazi Text", "Noto Naskh Arabic", serif; font-style: normal; letter-spacing: 0; }
+.pullquote footer { margin-top: var(--sp-3); font: 600 var(--t-meta)/1.3 var(--sans); color: var(--meta); }
+
+.sidenote { margin: .2em 0 1.4em; padding-top: var(--sp-3); border-top: 1px solid var(--context); font: 400 1rem/1.5 var(--serif); color: var(--text-2); }
+.sidenote .kicker { margin-bottom: .45em; }
+.sidenote p { margin: 0; }
+
+.fig { margin: 1.6em 0 1.8em; }
+.fig .photo { aspect-ratio: auto; }
+.fig--pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-2); }
+.fig--pair .photo { aspect-ratio: 4 / 5; }
+.fig--pair figcaption { grid-column: 1 / -1; }
+
+.steps { margin: 1.2em 0 1.8em; --stalk-x: calc(var(--mark-w) / 2); }
+.steps .dayline__list { gap: var(--sp-4); }
+.steps .dl__title { font-weight: 500; font-size: 1.0625rem; }
+.steps .dl__title::after { display: none; }
+.steps .dl:hover .dl__title { text-decoration: none; }
+
+.art__spine { display: none; }
+
+.art__end { display: grid; gap: var(--sp-6); padding-top: var(--sp-5); }
+.note-std { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: var(--sp-4); align-items: center; padding-block: var(--sp-5); border-block: 1px solid var(--rule); }
+.note-std .ring { width: 44px; height: 44px; background: var(--context); }
+.note-std p { margin: 0; font: 400 .9375rem/1.5 var(--serif); color: var(--text-2); }
+.note-std a { color: var(--text); font-weight: 600; text-decoration-color: var(--context); text-underline-offset: .15em; }
+.authorbox { position: relative; display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: var(--sp-2) var(--sp-4); align-items: start; }
+.authorbox .portrait { grid-row: 1 / span 3; width: 72px; }
+.authorbox > :not(.portrait) { grid-column: 2; margin: 0; }
+.authorbox__name { font: 700 var(--t-ui)/1.3 var(--sans); }
+.authorbox__name a { text-decoration: none; }
+.authorbox__name a:hover { text-decoration: underline; text-decoration-color: var(--context); text-underline-offset: .2em; }
+.authorbox p { font: 400 1rem/1.5 var(--serif); color: var(--text-2); }
+
+.art__more { padding-block: var(--sp-9) var(--sp-11); }
+
+@container art (min-width: 720px) {
+  .art__grid { grid-template-columns: repeat(8, minmax(0, 1fr)); column-gap: var(--gutter); }
+  .art__grid > * { grid-column: 1 / -1; }
+  .art__top { grid-column: 1 / 8; padding-top: var(--sp-8); }
+  .art__lead { margin: 0; }
+  .art__lead .caption { padding: 0; }
+  .art__body, .art__end { grid-column: 1 / 8; }
+}
+@container art (min-width: 1100px) {
+  .art__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .art__top { grid-column: 4 / 13; padding-top: var(--sp-9); }
+  .art__lead { grid-column: 1 / -1; }
+  .art__lead .photo { aspect-ratio: 16 / 9; }
+  .art__lead .caption { padding-left: calc((100% + var(--gutter)) / 4); }
+  /* the body hangs on the spine: paragraphs in 4–9, notes in the rail, wide pictures run to 12 */
+  .art__body { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; grid-auto-flow: row dense; align-items: start; padding-top: var(--sp-9); }
+  .art__body > * { grid-column: 4 / 10; }
+  /* notes hang to the right of the spine, never across it */
+  .art__body > .sidenote { grid-column: 1 / 4; grid-row: span 3; margin: .35em 0 0; padding: var(--sp-3) var(--sp-4) 0 calc(var(--mark-w) + var(--sp-3)); }
+  .art__body > .fig--wide { grid-column: 4 / 13; }
+  .art__body > .pullquote { grid-column: 4 / 12; }
+  .art__body > .art__spine { grid-column: auto; grid-row: auto; }
+  .art__spine { display: block; position: absolute; top: var(--sp-9); bottom: 0; left: calc(var(--mark-w) / 2); width: 1px; background: var(--stone-300); }
+  .art__spine .lf { position: sticky; top: 120px; display: block; --lf: 26px; translate: -50% 0; color: var(--text); }
+  .art__end { grid-column: 4 / 10; }
+}

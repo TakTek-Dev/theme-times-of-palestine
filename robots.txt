@@ -1,0 +1,8 @@
+# The Times of Palestine
+# Replace the domain below if the site moves.
+
+User-agent: *
+Allow: /
+Disallow: /search.html
+
+Sitemap: https://paltimesnews.com/sitemap.xml

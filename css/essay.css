@@ -1,0 +1,34 @@
+/* ═════════════════════════ Photo essay (ink) ═════════════════════════ */
+.essay { container: essay / inline-size; }
+.essay__top { padding-block: var(--sp-7) var(--sp-9); }
+.essay__kicker { margin-top: var(--sp-5); }
+.essay__share { margin-top: var(--sp-5); }
+.essay__more { padding-bottom: var(--sp-11); }
+.essay__title { margin: var(--sp-4) 0 0; max-width: 15ch; font: italic 700 var(--t-display)/.96 var(--serif); letter-spacing: -.024em; text-wrap: balance; }
+.essay__dek { margin: var(--sp-5) 0 0; max-width: 48ch; font: 400 var(--t-dek)/1.45 var(--serif); color: var(--text-2); }
+.essay__credits { margin: var(--sp-5) 0 0; font: 500 var(--t-meta)/1.5 var(--sans); color: var(--meta); max-width: 70ch; }
+.essay__credits b { color: var(--text); font-weight: 600; }
+.plates { display: grid; row-gap: var(--sp-10); margin: 0; padding: 0 0 var(--sp-11); list-style: none; }
+.plate { margin: 0; display: grid; row-gap: var(--sp-3); }
+.plate .photo { aspect-ratio: auto; margin-inline: calc(-1 * var(--margin)); width: calc(100% + 2 * var(--margin)); max-width: none; }
+.plate figcaption { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: var(--sp-4); align-items: baseline; font: 400 1.0625rem/1.5 var(--serif); color: var(--text-2); }
+.plate__n { font: italic 700 2rem/1 var(--serif); color: var(--text); font-variant-numeric: lining-nums; }
+.plate__credit { display: block; margin-top: .35em; font: 500 var(--t-micro)/1.4 var(--sans); color: var(--meta); }
+.plate--pair .plate__pics { display: grid; gap: var(--sp-2); }
+.plate--pair .photo { margin: 0; width: 100%; }
+@container essay (min-width: 720px) {
+  .plate .photo { margin-inline: 0; width: 100%; }
+  .plate--pair .plate__pics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .plate--pair .photo { aspect-ratio: 4 / 5; }
+}
+@container essay (min-width: 1100px) {
+  .essay__top { padding-top: var(--sp-10); }
+  .essay__top > * { margin-left: calc((100% + var(--gutter)) / 4); }
+  .plate { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); align-items: end; }
+  .plate > .photo, .plate > .plate__pics { grid-column: 4 / 13; grid-row: 1; }
+  .plate figcaption { grid-column: 1 / 4; grid-row: 1; grid-template-columns: minmax(0, 1fr); row-gap: var(--sp-3); padding-right: var(--sp-4); }
+  .plate--full > .photo { grid-column: 1 / 13; }
+  .plate--full figcaption { grid-column: 4 / 10; grid-row: 2; grid-template-columns: auto minmax(0, 1fr); padding-top: var(--sp-2); }
+  .plate--left > .photo { grid-column: 1 / 10; }
+  .plate--left figcaption { grid-column: 10 / 13; padding: 0 0 0 var(--sp-2); }
+}

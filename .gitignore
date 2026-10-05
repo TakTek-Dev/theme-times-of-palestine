@@ -1,0 +1,14 @@
+# Python caches from tools/
+__pycache__/
+*.pyc
+
+# Editor and OS clutter
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Client source files: kept with the project, not published
+/Logo TTFP Final.ai
+/١١١.jpeg
+/لوجو (1).png

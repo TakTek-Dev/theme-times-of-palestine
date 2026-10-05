@@ -1,0 +1,29 @@
+{
+  "name": "The Times of Palestine",
+  "short_name": "Times of Palestine",
+  "description": "News, context and stories from Palestine, in English.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "lang": "en-GB",
+  "background_color": "#FBF9F6",
+  "theme_color": "#FBF9F6",
+  "icons": [
+    {
+      "src": "img/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
