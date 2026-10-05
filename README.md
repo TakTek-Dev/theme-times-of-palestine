@@ -6,7 +6,9 @@ no framework and no required build step. Open `index.html` through any static
 server and it runs.
 
 **Live demo:** <https://taktek-dev.github.io/theme-times-of-palestine/>
-(add `?news=breaking` or `?news=calm` to any page to see the header's other moods)
+(add `?news=breaking` or `?news=calm` to any page to see the header's other moods).
+Every template, with a thumbnail, is listed on
+[`pages.html`](https://taktek-dev.github.io/theme-times-of-palestine/pages.html).
 
 ![Home, desktop](docs/home-desktop.webp)
 
@@ -29,10 +31,21 @@ server and it runs.
 | `photo-essay.html` | Photo essay on ink: numbered plates in four layouts |
 | `about.html` | About, how to read us, standards, corrections, contact |
 | `404.html` | Not found, with search and the main sections |
+| `opinion.html` | Analysis & opinion front: the context desk on green, columnists, latest pieces beside the letters to the editor, most read |
+| `opinion-article.html` | Opinion column: label and column name, italic headline, the writer's byline, green drop cap, opinion note in the rail, standards note, more from the column |
+| `writer.html` | Columnist: portrait, column and schedule, the latest column set as a quotation, every column, more columnists |
+| `writers.html` | The newsroom: columnists, reporters by bureau on the spine, photographers, editors |
+| `tag.html` | Topic: follow button, "the story so far" timeline beside the lead story, all coverage, explainer, related topics |
+| `archive.html` | Archive: filters, a month calendar with one bar per day, each day's stories by section |
+| `contact.html` | Contact form, the desks, secure tips, bureaus |
+| `search-empty.html` | Search with no results: what to try next, sections, latest stories |
+| `privacy.html` | Privacy, cookies and terms: contents on the spine that follow the reading, "in short" box |
+| `pages.html` | Theme index: every template with a thumbnail (not linked from the site, `noindex`) |
 
-Every story link in the demo opens `article.html` and every section link opens
-`section.html` (with `?section=` naming the section), so each template can be
-reached from anywhere.
+Every story link in the demo opens `article.html` (opinion pieces open
+`opinion-article.html`), every section link opens `section.html` (with
+`?section=` naming the section), and topics open `tag.html`, so each template
+can be reached from anywhere.
 
 ## Run it
 
@@ -47,7 +60,7 @@ Then open <http://localhost:8000>. Any static host works the same way
 
 ```
 .
-├── index.html … 404.html   nine templates (see above)
+├── index.html … pages.html  nineteen templates (see above)
 ├── partials/               head.html, header.html, footer.html: the source of truth for shared markup
 ├── css/
 │   ├── fonts.css           @font-face, plus metric-matched fallbacks (no layout shift on swap)
@@ -57,10 +70,13 @@ Then open <http://localhost:8000>. Any static host works the same way
 │   ├── header.css          header, menu, breaking band, condensed bar
 │   ├── footer.css          footer
 │   ├── core.css            GENERATED: the six files above in one request
-│   ├── modules.css         front-page modules (home, section front, author)
+│   ├── modules.css         front-page modules (home, section and opinion fronts, author)
+│   ├── people.css          columnists, the writer's page, the newsroom
 │   └── home.css · article.css · live.css · section.css · author.css · search.css · essay.css · about.css · 404.css
+│       · opinion.css · tag.css · archive.css · contact.css · legal.css · theme-index.css
 ├── js/main.js              all behaviour, one deferred file, no dependencies
 ├── fonts/                  Newsreader, Figtree, Markazi Text (woff2, OFL licences alongside)
+├── docs/                   README images; docs/pages/ holds the theme index thumbnails
 ├── img/
 │   ├── brand/              logo, inverse logo, mark, leaf, braces, ring (SVG)
 │   ├── photos/             responsive WebP sets: <name>-<width>.webp
@@ -137,6 +153,9 @@ Each part looks for its own markup, so every page loads the same file.
 | `[data-copy-link]` | Copies the page address (plus the attribute's fragment, e.g. one live update) and confirms in a toast |
 | `[data-share]` | Builds X, WhatsApp, Facebook and Telegram share links from the page being viewed (real links are also in the markup) |
 | `[data-newsletter]` | Shows the confirmation in place. **Front end only**: connect the form to the mailing service |
+| `[data-contact]` | Contact form: native validation, then the confirmation in place; `?subject=letter` (or any option value) preselects the subject. **Front end only**: connect it to the newsroom inbox |
+| `[data-follow]` | Topic follow button (`aria-pressed`); **demo only**, the choice is kept in this browser |
+| `[data-toc]` | Contents list: marks the section being read with `aria-current` |
 
 Without JavaScript every page still reads in full: new and older live updates
 are simply shown, and the gallery shows its first picture with its captions.
@@ -170,22 +189,23 @@ shown are visually hidden, never removed), 24px minimum targets, live regions
 for the toast and gallery captions, focus moved to revealed live updates, and
 `prefers-reduced-motion` respected (the live pulse stops, transitions collapse).
 
-## Checked on 5 October 2026
+## Checked on 5–6 October 2026
 
-- **Layout**: all nine templates at 375, 834 and 1440px in Chrome: no
-  horizontal overflow, no console errors, no failed requests; desktop pages
-  match the approved design boards.
-- **Behaviour**: 29 scripted checks (menu, condensed bar, gallery, live
-  updates, copy and share, newsletter, header moods, search form): all pass.
+- **Layout**: all nineteen templates at 375, 834 and 1440px in Chrome: no
+  horizontal overflow, no console errors, no failed requests. The first nine
+  match the approved design boards; the other ten extend the same system.
+- **Behaviour**: 38 scripted checks (menu, condensed bar, gallery, live
+  updates, copy and share, newsletter, header moods, search form, opinion
+  links, topic follow, contact form, contents list): all pass.
 - **Accessibility**: axe-core 4.10 (WCAG 2.0, 2.1, 2.2 A and AA, plus best
   practices) on every template at 375 and 1440px, and with the menu open: no
   violations.
 - **Markup**: html-validate 9: no errors with the `standard` preset, nor with
   `recommended` (its `no-inline-style` and `long-title` rules off: focal
   points are inline `object-position`, and page titles carry the site name).
-- **Lighthouse 12**, mobile, served locally without compression: Performance
-  80–84, Accessibility 100, Best Practices 100, SEO 100; CLS 0, FCP 1.8s, LCP
-  about 4.1s under simulated slow 4G. On a host that compresses text
+- **Lighthouse 12** (home and article), mobile, served locally without
+  compression: Performance 80–84, Accessibility 100, Best Practices 100,
+  SEO 100; CLS 0, FCP 1.8s, LCP about 4.1s under simulated slow 4G. On a host that compresses text
   (GitHub Pages does) the HTML and CSS weigh far less, so expect better.
 
 Not checked: Safari and Firefox on real devices, screen readers by hand, the

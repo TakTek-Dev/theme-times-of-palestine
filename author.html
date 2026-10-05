@@ -27,12 +27,12 @@
     <link rel="alternate" type="application/rss+xml" title="The Times of Palestine" href="feed.xml">
     <link rel="preload" href="fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/newsreader-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="css/core.css?v=1">
+    <link rel="stylesheet" href="css/core.css?v=2">
     <script>document.documentElement.className = "js";</script>
-    <script src="js/main.js?v=1" defer></script>
+    <script src="js/main.js?v=2" defer></script>
     <!-- /tot:head -->
-    <link rel="stylesheet" href="css/modules.css?v=1">
-    <link rel="stylesheet" href="css/author.css?v=1">
+    <link rel="stylesheet" href="css/modules.css?v=2">
+    <link rel="stylesheet" href="css/author.css?v=2">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","url":"https://paltimesnews.com/author.html","mainEntity":{"@type":"Person","name":"[Reporter name]","jobTitle":"Correspondent, Nablus","worksFor":{"@type":"NewsMediaOrganization","name":"The Times of Palestine","url":"https://paltimesnews.com/","logo":{"@type":"ImageObject","url":"https://paltimesnews.com/img/icons/icon-512.png","width":512,"height":512}},"knowsAbout":["Nablus","Olive harvest","Agriculture","Jenin"]}}</script>
   </head>
   <body class="tot" id="top">
@@ -58,9 +58,9 @@
             <li><a href="section.html?section=west-bank">West Bank</a></li>
             <li><a href="section.html?section=jerusalem">Jerusalem</a></li>
             <li><a href="section.html?section=diaspora">Diaspora</a></li>
-            <li><a href="section.html?section=analysis">Analysis</a></li>
+            <li><a href="opinion.html?type=analysis">Analysis</a></li>
             <li><a href="section.html?section=culture">Culture</a></li>
-            <li><a href="section.html?section=opinion">Opinion</a></li>
+            <li><a href="opinion.html">Opinion</a></li>
           </ul>
         </nav>
         <div class="hdr__tools">
@@ -78,9 +78,9 @@
               <li><a href="section.html?section=west-bank">West Bank</a></li>
               <li><a href="section.html?section=jerusalem">Jerusalem</a></li>
               <li><a href="section.html?section=diaspora">Diaspora</a></li>
-              <li><a href="section.html?section=analysis">Analysis</a></li>
+              <li><a href="opinion.html?type=analysis">Analysis</a></li>
               <li><a href="section.html?section=culture">Culture</a></li>
-              <li><a href="section.html?section=opinion">Opinion</a></li>
+              <li><a href="opinion.html">Opinion</a></li>
             </ul>
           </nav>
           <a class="minibar__live" href="live.html"><span class="lf pulse" aria-hidden="true"></span>Live</a>
@@ -113,15 +113,15 @@
                 <li><a href="section.html?section=economy">Economy</a></li>
                 <li><a href="section.html?section=society">Society</a></li>
                 <li><a href="section.html?section=culture">Culture</a></li>
-                <li><a href="section.html?section=opinion">Opinion</a></li>
+                <li><a href="opinion.html">Opinion</a></li>
               </ul>
             </div>
             <div class="menu__group">
               <h2>Formats</h2>
               <ul>
                 <li><a href="live.html">Live</a></li>
-                <li><a href="section.html?section=analysis">Analysis</a></li>
-                <li><a href="section.html?section=explainers">Explainers</a></li>
+                <li><a href="opinion.html?type=analysis">Analysis</a></li>
+                <li><a href="opinion.html?type=explainers">Explainers</a></li>
                 <li><a href="photo-essay.html">Photography</a></li>
                 <li><a href="section.html?section=video">Video</a></li>
               </ul>
@@ -132,7 +132,9 @@
                 <li><a href="about.html">About us</a></li>
                 <li><a href="about.html#standards">Editorial standards</a></li>
                 <li><a href="about.html#corrections">Corrections</a></li>
-                <li><a href="about.html#contact">Contact</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="writers.html">Our writers</a></li>
+                <li><a href="archive.html">Archive</a></li>
               </ul>
             </div>
           </nav>
@@ -148,7 +150,7 @@
             <p class="kicker">Correspondent<span class="kicker__sep" aria-hidden="true">·</span><span>Nablus</span></p>
             <h1 class="profile__name">[Reporter name]</h1>
             <p class="profile__bio">[Reporter name] covers the northern West Bank for the Times of Palestine: agriculture, labour, and the cities of Nablus and Jenin. [Two sentences of biography: background, languages, how to reach them.]</p>
-            <p class="topics profile__beats"><span>Covers</span><a href="section.html?section=nablus">Nablus</a><a href="section.html?section=olive-harvest">Olive harvest</a><a href="section.html?section=agriculture">Agriculture</a><a href="section.html?section=jenin">Jenin</a></p>
+            <p class="topics profile__beats"><span>Covers</span><a href="tag.html?tag=nablus">Nablus</a><a href="tag.html">Olive harvest</a><a href="tag.html?tag=agriculture">Agriculture</a><a href="tag.html?tag=jenin">Jenin</a></p>
             <ul class="profile__links">
               <li><a href="#email"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5.5" width="18" height="13" fill="none" stroke="currentColor" stroke-width="2"></rect><path d="m3.5 6.5 8.5 6.5 8.5-6.5" fill="none" stroke="currentColor" stroke-width="2"></path></svg><span>[Email address]</span></a></li>
               <li><a href="#x"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M17.45 20.73L4.36 3.27L6.55 3.27L19.64 20.73L17.45 20.73M7.64 1.09L0 1.09L9.01 13.11L0.49 22.91L3.38 22.91L10.35 14.89L16.36 22.91L24 22.91L14.61 10.39L22.69 1.09L19.8 1.09L13.27 8.6L7.64 1.09"></path></svg><span>@[handle]</span></a></li>
@@ -261,15 +263,15 @@
               <li><a href="section.html?section=economy">Economy</a></li>
               <li><a href="section.html?section=society">Society</a></li>
               <li><a href="section.html?section=culture">Culture</a></li>
-              <li><a href="section.html?section=opinion">Opinion</a></li>
+              <li><a href="opinion.html">Opinion</a></li>
             </ul>
           </div>
           <div class="ftr__group">
             <h2>Formats</h2>
             <ul>
               <li><a href="live.html">Live</a></li>
-              <li><a href="section.html?section=analysis">Analysis</a></li>
-              <li><a href="section.html?section=explainers">Explainers</a></li>
+              <li><a href="opinion.html?type=analysis">Analysis</a></li>
+              <li><a href="opinion.html?type=explainers">Explainers</a></li>
               <li><a href="photo-essay.html">Photography</a></li>
               <li><a href="section.html?section=video">Video</a></li>
             </ul>
@@ -279,7 +281,9 @@
             <ul>
               <li><a href="about.html">About us</a></li>
               <li><a href="about.html#corrections">Corrections</a></li>
-              <li><a href="about.html#contact">Contact</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="writers.html">Our writers</a></li>
+              <li><a href="archive.html">Archive</a></li>
             </ul>
           </div>
         </nav>
@@ -296,9 +300,9 @@
         <ul class="ftr__legal">
           <li>© 2026 The Times of Palestine</li>
           <li>paltimesnews.com</li>
-          <li><a href="#privacy">Privacy</a></li>
-          <li><a href="#terms">Terms</a></li>
-          <li><a href="#cookies">Cookie settings</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="privacy.html#terms">Terms</a></li>
+          <li><a href="privacy.html#cookies">Cookie settings</a></li>
         </ul>
       </div>
     </footer>

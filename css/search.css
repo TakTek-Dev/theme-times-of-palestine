@@ -40,3 +40,22 @@
   content: ""; position: absolute; left: 0; width: 13px; aspect-ratio: var(--leaf-ratio); rotate: -90deg; background: var(--text);
   -webkit-mask: url("../img/brand/leaf.svg") center / contain no-repeat; mask: url("../img/brand/leaf.svg") center / contain no-repeat;
 }
+
+/* No results: what to try next, and the day's stories */
+.srch__empty { display: grid; gap: var(--sp-8) var(--gutter); padding: var(--sp-4) 0 var(--sp-10); }
+.srch__empty-title { margin: 0; font: italic 700 clamp(2rem, 1.4rem + 2.4cqi, 3.5rem)/1 var(--serif); letter-spacing: -.02em; text-wrap: balance; }
+.srch__tips { display: grid; gap: var(--sp-3); margin: var(--sp-6) 0; padding: 0; list-style: none; }
+.srch__tips li { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); align-items: baseline; font: 400 1.0625rem/1.5 var(--serif); }
+.srch__tips .lf { --lf: 13px; rotate: -90deg; color: var(--context); }
+.srch__tips a { text-decoration-color: var(--context); text-underline-offset: .15em; }
+.srch__browse { margin-top: var(--sp-7); padding-top: var(--sp-4); border-top: 1px solid var(--rule); }
+.srch__browse ul { display: flex; flex-wrap: wrap; gap: var(--sp-1) var(--sp-6); margin: var(--sp-2) 0 0; padding: 0; list-style: none; }
+.srch__browse a { display: inline-flex; align-items: center; gap: .5em; min-height: 44px; font: 600 var(--t-ui)/1 var(--sans); color: var(--text); text-decoration: none; }
+.srch__browse a:hover { color: var(--context); }
+.srch__latest { margin-top: var(--sp-4); }
+.srch__latest .card--row:first-child { border-top: 0; padding-top: 0; }
+@container srch (min-width: 1100px) {
+  .srch__empty { grid-template-columns: repeat(12, minmax(0, 1fr)); padding-top: var(--sp-8); }
+  .srch__empty-main { grid-column: 1 / 8; padding-right: var(--sp-6); }
+  .srch__empty-side { grid-column: 8 / 13; }
+}

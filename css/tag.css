@@ -1,0 +1,24 @@
+/* ═══════════════════ Topic ═══════════════════ */
+.tagp__count { margin-top: var(--sp-1); }
+.tagp__follow .lf { --lf: 14px; color: var(--context); }
+.tagp__follow[aria-pressed="true"] { background: var(--tot-ink); border-color: var(--tot-ink); color: var(--stone-0); }
+.tagp__follow[aria-pressed="true"] .lf { color: var(--green-300); }
+
+/* the story so far on the spine, beside the lead story */
+.tagp__front { display: grid; gap: var(--sp-8) var(--gutter); }
+.tagp__lead .card__title { font-size: clamp(1.75rem, 1.25rem + 1.8cqi, 2.875rem); line-height: 1.04; letter-spacing: -.018em; }
+.tagp__lead .card__dek { font-size: var(--t-dek); line-height: 1.42; max-width: 50ch; }
+
+.tagp__more { display: grid; gap: var(--sp-7) var(--gutter); margin-top: var(--sp-9); padding-top: var(--sp-5); border-top: 1px solid var(--rule-strong); }
+.tagp__related .topics { margin-top: var(--sp-2); }
+
+@container (min-width: 1100px) {
+  .tagp__front { grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: stretch; }
+  .tagp__front > .tagp__sofar { grid-column: 1 / 5; display: flex; flex-direction: column; padding-right: var(--sp-3); }
+  .tagp__sofar .dayline__list { flex: 1 1 auto; align-content: space-between; }
+  .tagp__front > .tagp__lead { grid-column: 5 / 13; display: flex; flex-direction: column; gap: var(--sp-3); }
+  .tagp__lead > .photo { flex: 1 1 auto; height: 0; min-height: 360px; aspect-ratio: auto; }
+  .tagp__more { grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: start; }
+  .tagp__more > .context { grid-column: 1 / 7; }
+  .tagp__more > .tagp__related { grid-column: 7 / 13; }
+}

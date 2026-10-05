@@ -1,0 +1,18 @@
+/* ═══════════════════ Theme index: every template on one page ═══════════════════ */
+.tidx__group { padding-top: var(--sp-9); }
+.tidx__group:last-child { padding-bottom: var(--sp-11); }
+.tidx__grid { display: grid; gap: var(--sp-8) var(--gutter); margin: 0; padding: 0; list-style: none; }
+.tidx__card { position: relative; display: grid; row-gap: var(--sp-2); align-content: start; min-width: 0; }
+.tidx__shot {
+  display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; margin-bottom: var(--sp-2);
+  object-fit: cover; object-position: top; border: 1px solid var(--rule); background: var(--surface-2);
+  transition: border-color .2s;
+}
+.tidx__name { margin: 0; font: italic 600 1.5rem/1.15 var(--serif); letter-spacing: -.01em; }
+.tidx__name a { text-decoration: none; }
+.tidx__name a::after { content: ""; position: absolute; inset: 0; }
+.tidx__card:hover .tidx__name a { text-decoration: underline; text-decoration-thickness: .05em; text-underline-offset: .12em; text-decoration-color: var(--context); }
+.tidx__card:hover .tidx__shot { border-color: var(--text); }
+.tidx__desc { margin: 0; font: 400 1rem/1.45 var(--serif); color: var(--text-2); text-wrap: pretty; }
+@container (min-width: 720px) { .tidx__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@container (min-width: 1100px) { .tidx__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }

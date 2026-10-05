@@ -1,0 +1,55 @@
+/* ═══════════════════ Contact ═══════════════════ */
+.contact__grid { display: grid; gap: var(--sp-9) var(--gutter); padding-top: var(--sp-2); }
+.contact__h { margin: 0 0 var(--sp-5); font: italic 600 clamp(1.625rem, 1.35rem + 1cqi, 2.25rem)/1.05 var(--serif); letter-spacing: -.012em; }
+
+form[data-contact] { display: grid; gap: var(--sp-5) var(--gutter); }
+.field { display: grid; gap: var(--sp-2); align-content: start; }
+.field label { font: 600 var(--t-meta)/1.3 var(--sans); }
+.field input, .field select, .field textarea {
+  width: 100%; min-height: 48px; padding: var(--sp-2) var(--sp-4); border: 1px solid var(--stone-500);
+  background: var(--bg); color: var(--text); font: 500 var(--t-ui)/1.4 var(--sans);
+}
+.field textarea { min-height: 180px; padding-block: var(--sp-3); resize: vertical; font: 400 1.0625rem/1.55 var(--serif); }
+.field :is(input, select, textarea):focus { outline: 2px solid var(--focus); outline-offset: 1px; border-color: var(--focus); }
+.field__hint { margin: 0; font: 500 var(--t-micro)/1.4 var(--sans); color: var(--meta); }
+.field--check { grid-template-columns: auto minmax(0, 1fr); align-items: start; column-gap: var(--sp-3); }
+.field--check input { width: 22px; min-height: 0; height: 22px; margin: .1em 0 0; padding: 0; accent-color: var(--tot-ink); }
+.field--check label { font: 400 .9375rem/1.5 var(--serif); }
+.field--check a { text-decoration-color: var(--context); text-underline-offset: .15em; }
+form[data-contact] .btn { justify-self: start; }
+.contact__done { margin: 0; padding: var(--sp-6); background: var(--green-50); font: italic 600 1.375rem/1.35 var(--serif); color: var(--context); }
+.contact__done:focus { outline: none; }
+
+.contact__side { display: grid; gap: var(--sp-8); align-content: start; }
+.desk-lines { margin: 0; padding: 0; list-style: none; }
+.desk-lines li { display: grid; gap: .3em; padding-block: var(--sp-4); border-top: 1px solid var(--rule); }
+.desk-lines li:last-child { border-bottom: 1px solid var(--rule); }
+.desk-line__name { margin: 0; font: 700 var(--t-ui)/1.3 var(--sans); }
+.desk-line__email { margin: 0; font: 600 1.125rem/1.3 var(--serif); }
+.desk-line__note { margin: 0; font: 400 .9375rem/1.45 var(--serif); color: var(--text-2); }
+
+/* secure tips: on ink, under the standards ring */
+.tipbox { display: grid; gap: var(--sp-3); padding: var(--sp-6); }
+.tipbox .ring { width: 52px; height: 52px; background: var(--context); }
+.tipbox .contact__h { margin: 0; }
+.tipbox p { margin: 0; font: 400 1rem/1.55 var(--serif); color: var(--text-2); }
+.tipbox b { color: var(--text); font-weight: 600; }
+.tipbox a { color: var(--context); text-underline-offset: .15em; }
+
+.contact__bureaus { padding-top: var(--sp-9); }
+.contact__grid { padding-bottom: var(--sp-10); }
+.bureau-lines { display: grid; gap: var(--sp-4) var(--gutter); margin: 0; padding: 0; list-style: none; }
+.bureau-lines li { display: grid; gap: .25em; padding-top: var(--sp-3); border-top: 1px solid var(--rule-strong); }
+.bureau-lines b { font: italic 600 1.375rem/1.15 var(--serif); }
+.bureau-lines span { font: 400 1rem/1.45 var(--serif); color: var(--text-2); }
+
+@container (min-width: 720px) {
+  form[data-contact] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .field--wide, form[data-contact] .btn { grid-column: 1 / -1; }
+  .bureau-lines { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container (min-width: 1100px) {
+  .contact__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: start; }
+  .contact__main { grid-column: 1 / 8; padding-right: var(--sp-6); }
+  .contact__side { grid-column: 8 / 13; padding-left: var(--sp-2); }
+}

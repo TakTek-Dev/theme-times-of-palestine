@@ -409,3 +409,12 @@ mark { background: var(--green-100); color: inherit; padding: 0 .08em; }
 .nlbar__done { margin: 0; font: italic 600 1.25rem/1.35 var(--serif); color: var(--context); }
 .nlbar__done:focus { outline: none; }
 @container (min-width: 1100px) { .nlbar__done { grid-column: 8 / 13; } }
+
+/* Profile links (reporter and columnist pages) */
+.profile__links { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin: var(--sp-6) 0 0; padding: 0; list-style: none; }
+.profile__links a {
+  display: inline-flex; align-items: center; gap: .55em; min-height: 44px; padding: 0 var(--sp-4);
+  border: 1px solid var(--rule); color: var(--text); text-decoration: none; font: 600 var(--t-meta)/1 var(--sans);
+}
+.profile__links a:hover { border-color: var(--text); color: var(--context); }
+.profile__links svg { width: 18px; height: 18px; }

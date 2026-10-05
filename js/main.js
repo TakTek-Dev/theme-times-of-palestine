@@ -240,18 +240,67 @@
     keepOpen();
   }
 
-  /* ── Newsletter ────────────────────────────────────────────────────────── */
-  // Front end only: connect the form's action to the mailing service.
+  /* ── Forms: newsletter and contact ─────────────────────────────────────── */
+  // Front end only: connect each form's action to the mailing service or inbox.
+  function confirmInPlace(form, done, message) {
+    if (!done) return;
+    done.textContent = message;
+    done.tabIndex = -1;
+    done.hidden = false;
+    form.hidden = true;
+    done.focus();
+  }
   $$('[data-newsletter]').forEach((form) => {
     form.addEventListener('submit', (event) => {
       event.preventDefault();
-      const done = form.parentElement.querySelector('.nlbar__done');
-      if (!done) return;
-      done.textContent = 'Thank you. Check your inbox to confirm your address.';
-      done.tabIndex = -1;
-      done.hidden = false;
-      form.hidden = true;
-      done.focus();
+      confirmInPlace(form, form.parentElement.querySelector('.nlbar__done'), 'Thank you. Check your inbox to confirm your address.');
     });
+  });
+  $$('[data-contact]').forEach((form) => {
+    const subject = form.querySelector('select[name="subject"]');
+    const wanted = new URLSearchParams(location.search).get('subject');
+    if (subject && wanted && [...subject.options].some((o) => o.value === wanted)) subject.value = wanted;
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      confirmInPlace(form, form.parentElement.querySelector('.contact__done'), 'Thank you. Your message is with the newsroom, and we will reply by email.');
+    });
+  });
+
+  /* ── Topic: follow ─────────────────────────────────────────────────────── */
+  // Demo: the choice is kept in this browser only.
+  $$('[data-follow]').forEach((button) => {
+    const key = `tot-follow:${button.dataset.follow}`;
+    const label = $('[data-follow-label]', button);
+    const render = (on) => {
+      button.setAttribute('aria-pressed', String(on));
+      if (label) label.textContent = on ? 'Following' : 'Follow this topic';
+    };
+    let on = false;
+    try { on = localStorage.getItem(key) === '1'; } catch { /* storage blocked */ }
+    render(on);
+    button.addEventListener('click', () => {
+      on = !on;
+      render(on);
+      try { localStorage.setItem(key, on ? '1' : '0'); } catch { /* storage blocked */ }
+      say(on ? 'Following this topic' : 'No longer following');
+    });
+  });
+
+  /* ── Contents list: mark the section being read ────────────────────────── */
+  $$('[data-toc]').forEach((toc) => {
+    const links = $$('a[href*="#"]', toc);
+    const targets = links.map((a) => document.getElementById(a.hash.slice(1))).filter(Boolean);
+    if (!targets.length || !('IntersectionObserver' in window)) return;
+    const mark = (id) => links.forEach((a) => {
+      if (a.hash === `#${id}`) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    });
+    // a heading counts as current once it reaches the band just below the condensed bar
+    const observer = new IntersectionObserver((entries) => {
+      const seen = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+      if (seen.length) mark(seen[0].target.id);
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    targets.forEach((el) => observer.observe(el));
+    mark(targets[0].id);
   });
 })();

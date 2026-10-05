@@ -8,3 +8,11 @@
 @container secp (min-width: 720px) {
   .secp__mast { grid-template-columns: auto minmax(0, 1fr); align-items: end; column-gap: var(--sp-8); }
 }
+
+/* fronts that share this masthead: a long title stands alone above its standfirst */
+.secp__title--long { font-size: clamp(3rem, 1.5rem + 6.2cqi, 7.25rem); line-height: .9; }
+.secp__aside { display: grid; gap: var(--sp-4); justify-items: start; align-content: end; }
+@container secp (min-width: 720px) {
+  .secp__mast--stack { grid-template-columns: minmax(0, 1fr); }
+  .secp__mast--stack > .perch-head { justify-self: start; }
+}

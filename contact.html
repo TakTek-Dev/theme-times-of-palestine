@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>About us and our editorial standards | The Times of Palestine</title>
-    <meta name="description" content="Who we are, how to read us, and the standards we hold ourselves to: how we source, verify and correct.">
-    <link rel="canonical" href="https://paltimesnews.com/about.html">
+    <title>Contact the newsroom | The Times of Palestine</title>
+    <meta name="description" content="Tell us about a story, a correction or a partnership, or send a tip securely.">
+    <link rel="canonical" href="https://paltimesnews.com/contact.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="The Times of Palestine">
     <meta property="og:locale" content="en_GB">
-    <meta property="og:title" content="About us and our editorial standards">
-    <meta property="og:description" content="Who we are, how to read us, and the standards we hold ourselves to: how we source, verify and correct.">
-    <meta property="og:url" content="https://paltimesnews.com/about.html">
+    <meta property="og:title" content="Contact the newsroom">
+    <meta property="og:description" content="Tell us about a story, a correction or a partnership, or send a tip securely.">
+    <meta property="og:url" content="https://paltimesnews.com/contact.html">
     <meta property="og:image" content="https://paltimesnews.com/img/og/og-default.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -31,8 +31,10 @@
     <script>document.documentElement.className = "js";</script>
     <script src="js/main.js?v=2" defer></script>
     <!-- /tot:head -->
-    <link rel="stylesheet" href="css/about.css?v=2">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"AboutPage","url":"https://paltimesnews.com/about.html","name":"About the Times of Palestine","publisher":{"@type":"NewsMediaOrganization","name":"The Times of Palestine","url":"https://paltimesnews.com/","logo":{"@type":"ImageObject","url":"https://paltimesnews.com/img/icons/icon-512.png","width":512,"height":512}}}</script>
+    <link rel="stylesheet" href="css/section.css?v=2">
+    <link rel="stylesheet" href="css/contact.css?v=2">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","name":"Contact","url":"https://paltimesnews.com/contact.html","publisher":{"@type":"NewsMediaOrganization","name":"The Times of Palestine","url":"https://paltimesnews.com/","logo":{"@type":"ImageObject","url":"https://paltimesnews.com/img/icons/icon-512.png","width":512,"height":512}}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://paltimesnews.com/"},{"@type":"ListItem","position":2,"name":"Contact"}]}</script>
   </head>
   <body class="tot" id="top">
     <!-- tot:header -->
@@ -128,10 +130,10 @@
             <div class="menu__group">
               <h2>The Times of Palestine</h2>
               <ul>
-                <li><a href="about.html" aria-current="page">About us</a></li>
+                <li><a href="about.html">About us</a></li>
                 <li><a href="about.html#standards">Editorial standards</a></li>
                 <li><a href="about.html#corrections">Corrections</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" aria-current="page">Contact</a></li>
                 <li><a href="writers.html">Our writers</a></li>
                 <li><a href="archive.html">Archive</a></li>
               </ul>
@@ -141,66 +143,91 @@
       </div>
     </header>
     <!-- /tot:header -->
-    <main id="main" class="about">
+    <main id="main" class="secp contact">
+      <div class="wrap secp__top spine">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><span aria-current="page">Contact</span></li>
+          </ol>
+        </nav>
+        <div class="secp__mast">
+          <div class="perch-head">
+            <h1 class="perch-head__title secp__title">Contact</h1>
+            <p class="perch-head__perch">Write to us</p>
+          </div>
+          <div class="secp__aside">
+            <p class="secp__dek">Tell us about a story, a correction or a partnership. A person on the desk reads every message.</p>
+          </div>
+        </div>
+      </div>
       <div class="wrap spine">
-        <header class="about__hero">
-          <h1 class="about__statement"><img src="img/brand/logo.svg" alt="The Times of Palestine" width="1597" height="257"><span>on the record.</span></h1>
-          <p class="about__lede">The Times of Palestine is an English-language news site about Palestine: the news of the day, the context behind it, and the stories of the people who live it.</p>
-        </header>
-        <section class="about__sec" id="who" aria-labelledby="ab-who">
-          <h2 id="ab-who">Who we are</h2>
-          <div class="about__body">
-            <p>We report from Gaza, the West Bank and Jerusalem, and from Palestinian communities abroad. [Two or three sentences about the newsroom: who founded it, where the team works, how it is funded and who it answers to.]</p>
-            <p class="small">[Masthead: editor, desks and bureaus.]</p>
+        <div class="contact__grid ruled">
+          <div class="contact__main">
+            <section class="contact__form" aria-labelledby="ct-form">
+              <h2 class="contact__h" id="ct-form">Write to the newsroom</h2>
+              <form action="#contact" method="post" data-contact>
+                <div class="field"><label for="ct-name">Your name</label><input id="ct-name" name="name" type="text" autocomplete="name" required></div>
+                <div class="field"><label for="ct-email">Email address</label><input id="ct-email" name="email" type="email" autocomplete="email" required></div>
+                <div class="field field--wide"><label for="ct-subject">What is it about?</label><select id="ct-subject" name="subject"><option value="newsroom">A story or a tip</option><option value="correction">A correction</option><option value="letter">A letter to the editor</option><option value="partnership">A partnership</option><option value="advertising">Advertising</option><option value="other">Something else</option></select></div>
+                <div class="field field--wide">
+                  <label for="ct-message">Message</label><textarea id="ct-message" name="message" rows="7" required></textarea>
+                  <p class="field__hint">For a correction, include the link to the story.</p>
+                </div>
+                <div class="field field--wide field--check"><input id="ct-consent" name="consent" type="checkbox" required><label for="ct-consent">I agree that the Times of Palestine may store this message to reply to me, as set out in the <a href="privacy.html">privacy policy</a>.</label></div>
+                <button class="btn" type="submit">Send message</button>
+              </form>
+              <p class="contact__done" role="status" hidden></p>
+            </section>
+            <section class="contact__bureaus" aria-labelledby="ct-bureaus">
+              <h2 class="contact__h" id="ct-bureaus">Bureaus</h2>
+              <ul class="bureau-lines">
+                <li><b>Ramallah</b><span>[Office address]</span></li>
+                <li><b>Gaza</b><span>[Office address]</span></li>
+                <li><b>Nablus</b><span>[Office address]</span></li>
+                <li><b>Jerusalem</b><span>[Office address]</span></li>
+              </ul>
+            </section>
           </div>
-        </section>
-        <section class="about__sec" id="read" aria-labelledby="ab-read">
-          <h2 id="ab-read">How to read us</h2>
-          <div class="about__body">
-            <p>Our mark is three olive leaves, taken from the olive-leaf border of the kufiya. On the site each leaf has a job, and our colours tell you what kind of story you are reading.</p>
-            <ul class="temps">
-              <li><span class="lf is-now" aria-hidden="true"></span><span><b>Red is now.</b><span>Live coverage and breaking news. When nothing is live, there is no red on the page.</span></span></li>
-              <li><span class="lf is-context" aria-hidden="true"></span><span><b>Green is context.</b><span>Explainers, analysis and background: the reading that helps the news make sense.</span></span></li>
-              <li><span class="lf is-record" aria-hidden="true"></span><span><b>Ink is the record.</b><span>Our reporting, written and checked, and everything that holds the page together.</span></span></li>
-            </ul>
-          </div>
-          <div class="about__mark"><img src="img/brand/mark.svg" alt="" width="120" height="156"></div>
-        </section>
-        <section class="about__sec" id="standards" aria-labelledby="ab-std">
-          <h2 id="ab-std">Our standards</h2>
-          <div class="about__body">
-            <ol class="stds">
-              <li><span><b>We say how we know.</b><span>Every report names its sources, or explains why a source cannot be named.</span></span></li>
-              <li><span><b>We verify before we publish.</b><span>Images and claims are checked before they appear. In live coverage, anything not yet verified is labelled as such.</span></span></li>
-              <li><span><b>We correct in the open.</b><span>Corrections are made on the story and noted at the end of it, with the date.</span></span></li>
-              <li><span><b>We show photographs as they were taken.</b><span>Pictures are cropped for size only. We do not alter them, and we do not set text on them.</span></span></li>
-              <li><span><b>We keep news and opinion apart.</b><span>Opinion and analysis are labelled, and set in a different style from news reporting.</span></span></li>
-            </ol>
-            <div class="about__seal">
+          <div class="contact__side">
+            <section aria-labelledby="ct-desks">
+              <h2 class="contact__h" id="ct-desks">Desks</h2>
+              <ul class="desk-lines">
+                <li>
+                  <p class="desk-line__name">Newsroom</p>
+                  <p class="desk-line__email">[newsroom email]</p>
+                  <p class="desk-line__note">News, story ideas and events. We read everything; we cannot reply to all.</p>
+                </li>
+                <li>
+                  <p class="desk-line__name">Corrections</p>
+                  <p class="desk-line__email">[corrections email]</p>
+                  <p class="desk-line__note">Send the link and what needs fixing. We correct on the story and say what changed.</p>
+                </li>
+                <li>
+                  <p class="desk-line__name">Letters to the editor</p>
+                  <p class="desk-line__email">[letters email]</p>
+                  <p class="desk-line__note">Up to 250 words, with your name and town. Letters may be edited for length.</p>
+                </li>
+                <li>
+                  <p class="desk-line__name">Partnerships</p>
+                  <p class="desk-line__email">[partnerships email]</p>
+                  <p class="desk-line__note">Syndication, republishing and research partnerships.</p>
+                </li>
+                <li>
+                  <p class="desk-line__name">Advertising</p>
+                  <p class="desk-line__email">[advertising email]</p>
+                  <p class="desk-line__note">Advertising and sponsorship enquiries.</p>
+                </li>
+              </ul>
+            </section>
+            <section class="tipbox theme-ink" aria-labelledby="ct-tips">
               <span class="ring" aria-hidden="true"></span>
-              <p>The ring of leaves marks our standards across the site: at the end of every report and in our footer. [Link to the full ethics policy.]</p>
-            </div>
+              <h2 class="contact__h" id="ct-tips">Send a tip securely</h2>
+              <p>If a story puts you at risk, do not use this form or your work devices. Reach the newsroom on Signal at <b>[secure number]</b>, or through <b>[secure drop address]</b>.</p>
+              <p><a href="about.html#standards">How we protect our sources</a></p>
+            </section>
           </div>
-        </section>
-        <section class="about__sec" id="corrections" aria-labelledby="ab-cor">
-          <h2 id="ab-cor">Corrections</h2>
-          <div class="about__body">
-            <p>Seen a mistake? Write to [corrections email] with the link and what needs fixing. We correct errors on the story itself and say what changed, and when.</p>
-          </div>
-        </section>
-        <section class="about__sec" id="contact" aria-labelledby="ab-con">
-          <h2 id="ab-con">Contact</h2>
-          <div class="about__body">
-            <ul class="contacts">
-              <li><b>Newsroom</b><a href="#newsroom">[newsroom email]</a></li>
-              <li><b>Tips, securely</b><a href="#tips">[secure tip line]</a></li>
-              <li><b>Corrections</b><a href="#corrections">[corrections email]</a></li>
-              <li><b>Partnerships</b><a href="#partnerships">[partnerships email]</a></li>
-              <li><b>Social</b><a href="#social">@PalTimesNews</a></li>
-              <li><b>Address</b><a href="#address">[Office address]</a></li>
-            </ul>
-          </div>
-        </section>
+        </div>
       </div>
     </main>
     <!-- tot:footer -->
@@ -245,9 +272,9 @@
           <div class="ftr__group">
             <h2>The Times of Palestine</h2>
             <ul>
-              <li><a href="about.html" aria-current="page">About us</a></li>
+              <li><a href="about.html">About us</a></li>
               <li><a href="about.html#corrections">Corrections</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="contact.html" aria-current="page">Contact</a></li>
               <li><a href="writers.html">Our writers</a></li>
               <li><a href="archive.html">Archive</a></li>
             </ul>

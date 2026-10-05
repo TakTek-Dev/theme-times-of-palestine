@@ -110,6 +110,8 @@ html:not(.js) .gal__ctrl, html:not(.js) .gal__strip { display: none; }
 .voice--lead .voice__ex { font-size: var(--t-dek); line-height: 1.42; }
 .voice__by { margin: 0; font: 700 var(--t-meta)/1.3 var(--sans); }
 .voice__by span { font-weight: 500; color: var(--meta); }
+.voice__by a { position: relative; z-index: 1; text-decoration: none; }
+.voice__by a:hover { text-decoration: underline; text-underline-offset: .2em; text-decoration-color: var(--context); }
 .explain-row { display: grid; gap: var(--sp-5) var(--gutter); margin-top: var(--sp-9); padding-top: var(--sp-5); border-top: 1px solid var(--context); }
 .explain-row .card--row { grid-template-columns: auto minmax(0, 1fr); padding: 0; border: 0; }
 .explain-row .card--row > * { grid-column: 2; }
