@@ -40,12 +40,20 @@ Every template, with a thumbnail, is listed on
 | `contact.html` | Contact form, the desks, secure tips, bureaus |
 | `search-empty.html` | Search with no results: what to try next, sections, latest stories |
 | `privacy.html` | Privacy, cookies and terms: contents on the spine that follow the reading, "in short" box |
+| `explainer.html` | Explainer: the short answer, numbered questions on the left that follow the reading, answers on the spine with steps, a figure and a quote, "what we don't know yet", key words, sources |
+| `video.html` | Video front: the lead film on ink with its chapters and what to watch next, a series ("One view of Jerusalem"), every video by place with running times |
+| `video-story.html` | Video: the player on ink with a standards note, chapters that jump to their moment, transcript, up next, more from the place |
+| `photos.html` | Photography front: the lead essay on ink with its contact strip, photo essays as contact sheets, single frames in justified rows |
 | `pages.html` | Theme index: every template with a thumbnail (not linked from the site, `noindex`) |
 
-Every story link in the demo opens `article.html` (opinion pieces open
-`opinion-article.html`), every section link opens `section.html` (with
-`?section=` naming the section), and topics open `tag.html`, so each template
-can be reached from anywhere.
+Every story link in the demo opens the template of its kind: `article.html`
+for news and features, `opinion-article.html` for opinion, `explainer.html`
+for explainers, `video-story.html` for videos and `photo-essay.html` for photo
+essays. Every section link opens `section.html` and topics open `tag.html`, so
+each template can be reached from anywhere. Links that differ only by a query
+string (`?section=west-bank`, `?tag=nablus`, `?type=analysis`, `?q=…`,
+`?date=…`) name the page after the link that was followed and mark it as
+current; the sample stories stay the same until a CMS renders each page.
 
 ## Run it
 
@@ -60,7 +68,7 @@ Then open <http://localhost:8000>. Any static host works the same way
 
 ```
 .
-├── index.html … pages.html  nineteen templates (see above)
+├── index.html … pages.html  twenty-three templates (see above)
 ├── partials/               head.html, header.html, footer.html: the source of truth for shared markup
 ├── css/
 │   ├── fonts.css           @font-face, plus metric-matched fallbacks (no layout shift on swap)
@@ -74,8 +82,10 @@ Then open <http://localhost:8000>. Any static host works the same way
 │   ├── people.css          columnists, the writer's page, the newsroom
 │   └── home.css · article.css · live.css · section.css · author.css · search.css · essay.css · about.css · 404.css
 │       · opinion.css · tag.css · archive.css · contact.css · legal.css · theme-index.css
+│       · video.css · photos.css · explainer.css
 ├── js/main.js              all behaviour, one deferred file, no dependencies
 ├── fonts/                  Newsreader, Figtree, Markazi Text (woff2, OFL licences alongside)
+├── media/                  the sample video (MP4, H.264) and its captions file (a placeholder)
 ├── docs/                   README images; docs/pages/ holds the theme index thumbnails
 ├── img/
 │   ├── brand/              logo, inverse logo, mark, leaf, braces, ring (SVG)
@@ -156,6 +166,9 @@ Each part looks for its own markup, so every page loads the same file.
 | `[data-contact]` | Contact form: native validation, then the confirmation in place; `?subject=letter` (or any option value) preselects the subject. **Front end only**: connect it to the newsroom inbox |
 | `[data-follow]` | Topic follow button (`aria-pressed`); **demo only**, the choice is kept in this browser |
 | `[data-toc]` | Contents list: marks the section being read with `aria-current` |
+| `[data-player]` | Video: the leaf button plays it, then the browser's own controls take over (without JavaScript the native player shows from the start) |
+| `[data-seek]` | Chapters: jump the video named in `data-for` to the chapter's second and mark the chapter being watched; `?t=24` opens a video at 0:24 |
+| `?section=` `?tag=` `?type=` `?q=` `?date=` | **Demo only**: the template takes the name of the link that was followed (title, breadcrumb, current tab and menu link). Forms that submit to the page show the choices made |
 
 Without JavaScript every page still reads in full: new and older live updates
 are simply shown, and the gallery shows its first picture with its captions.
@@ -177,8 +190,9 @@ Every template has a title, description, canonical URL, Open Graph and
 Twitter card tags (1200×630 images in `img/og/`) and JSON-LD: `WebSite` with
 `SearchAction` and `NewsMediaOrganization` (home), `NewsArticle` (article,
 photo essay), `LiveBlogPosting` (live), `CollectionPage` (section),
-`ProfilePage` (author), `AboutPage`, and `BreadcrumbList` where there are
-breadcrumbs. Search and 404 are `noindex`. `sitemap.xml`, `robots.txt` and an
+`ProfilePage` (author), `AboutPage`, `BackgroundNewsArticle` (explainer),
+`VideoObject` with its chapters as `Clip`s (video), and `BreadcrumbList` where
+there are breadcrumbs. Search and 404 are `noindex`. `sitemap.xml`, `robots.txt` and an
 RSS `feed.xml` are included as static samples.
 
 ## Accessibility
@@ -189,26 +203,35 @@ shown are visually hidden, never removed), 24px minimum targets, live regions
 for the toast and gallery captions, focus moved to revealed live updates, and
 `prefers-reduced-motion` respected (the live pulse stops, transitions collapse).
 
-## Checked on 5–6 October 2026
+## Checked on 6 October 2026
 
-- **Layout**: all nineteen templates at 375, 834 and 1440px in Chrome: no
+- **Layout**: all twenty-three templates at 375, 834 and 1440px in Chrome: no
   horizontal overflow, no console errors, no failed requests. The first nine
-  match the approved design boards; the other ten extend the same system.
-- **Behaviour**: 38 scripted checks (menu, condensed bar, gallery, live
-  updates, copy and share, newsletter, header moods, search form, opinion
-  links, topic follow, contact form, contents list): all pass.
+  match the approved design boards; the others extend the same system.
+- **Other engines**: every template at 375 and 1440px in WebKit 26.5 and
+  Firefox 153 (Playwright, Windows): no overflow, no errors; the menu, gallery,
+  live updates, video playback and chapter seeking work in both. Playwright's
+  WebKit on Windows cannot draw variable-font weights (Google's own font files
+  included), so type weight in Safari still needs a look on a real device.
+- **Behaviour**: 52 scripted checks (menu, condensed bar, gallery, live
+  updates, copy and share, newsletter, header moods, search, opinion links,
+  topic follow, contact form, contents lists, the demo's query-string links,
+  video play, chapters and `?t=`): all pass. Video seeking needs byte-range
+  requests, which GitHub Pages and most hosts serve.
 - **Accessibility**: axe-core 4.10 (WCAG 2.0, 2.1, 2.2 A and AA, plus best
   practices) on every template at 375 and 1440px, and with the menu open: no
   violations.
 - **Markup**: html-validate 9: no errors with the `standard` preset, nor with
   `recommended` (its `no-inline-style` and `long-title` rules off: focal
-  points are inline `object-position`, and page titles carry the site name).
-- **Lighthouse 12** (home and article), mobile, served locally without
-  compression: Performance 80–84, Accessibility 100, Best Practices 100,
-  SEO 100; CLS 0, FCP 1.8s, LCP about 4.1s under simulated slow 4G. On a host that compresses text
-  (GitHub Pages does) the HTML and CSS weigh far less, so expect better.
+  points and picture ratios are inline custom properties, and page titles
+  carry the site name).
+- **Lighthouse 12**, mobile, every template served locally without
+  compression: Accessibility 100, Best Practices 100, SEO 100 (69 on the four
+  `noindex` pages, by design), Performance 82–94, CLS 0, LCP 2.9–4.1s under
+  simulated slow 4G. On the live site, which compresses text: home 83
+  (LCP 3.0s), article 91 (LCP 2.9s).
 
-Not checked: Safari and Firefox on real devices, screen readers by hand, the
+Not checked: Safari on a real iPhone or Mac, screen readers by hand, the
 pages behind a real CMS.
 
 ## Browser support
@@ -224,7 +247,9 @@ only) and the individual `translate`/`rotate`/`scale` properties.
       (`#instagram`, `#privacy`…); `python tools/build.py --check` lists them
 - [ ] Replace the sample photographs (see `CREDITS.md`), or keep their credits
 - [ ] Print real times from the CMS and remove `data-ago` (and the `?news=` preview, if wanted)
-- [ ] Connect the newsletter form and the search page to the backend
+- [ ] Connect the newsletter form, the contact form and the search page to the backend
+- [ ] Replace the sample video in `media/` with the newsroom's own, and write its
+      captions (`.vtt`) and transcript
 - [ ] Generate `sitemap.xml` and `feed.xml` from the CMS; check the domain in
       `robots.txt`, canonical and `og:url` tags if it changes
 - [ ] `404.html` uses root-relative paths so it works at any depth. `BASE_404`

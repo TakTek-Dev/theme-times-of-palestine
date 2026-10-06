@@ -1,0 +1,71 @@
+/* ═════════════════════════ Photography: the front ═════════════════════════ */
+.phx .secp__top { padding-bottom: var(--sp-8); }
+.phx .secp__title { font-size: clamp(3rem, 1.6rem + 6.6cqi, 8rem); }   /* a long word, still beside its standfirst */
+.phx__n { font: italic 700 1.25rem/1 var(--serif); font-variant-numeric: lining-nums; }
+
+/* the lead essay on ink: the plate runs as tall as its words, the contact strip closes the column */
+.phx__grid { display: grid; gap: var(--sp-5) var(--gutter); }
+.phx__plate { display: block; margin: 0 calc(-1 * var(--margin)); }
+.phx__plate .photo { aspect-ratio: 3 / 2; }
+.phx__info { display: flex; flex-direction: column; gap: var(--sp-4); min-width: 0; }
+.phx__title { display: grid; justify-items: start; gap: var(--sp-2); margin: 0; font: italic 700 clamp(2rem, 1.5rem + 1.8cqi, 3.125rem)/1 var(--serif); letter-spacing: -.02em; text-wrap: balance; }
+.phx__title .phx__n { color: var(--meta); letter-spacing: 0; }
+.phx__title a { text-decoration: none; }
+.phx__title a:hover { text-decoration: underline; text-decoration-thickness: .05em; text-underline-offset: .12em; text-decoration-color: var(--context); }
+.phx__dek { margin: 0; max-width: 44ch; font: 400 1.0625rem/1.5 var(--serif); color: var(--text-2); text-wrap: pretty; }
+.phx__by { margin: 0; font: 500 var(--t-micro)/1.45 var(--sans); color: var(--meta); }
+.phx__contact {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-2);
+  margin: auto 0 0; padding: var(--sp-4) 0 0; border-top: 1px solid var(--rule-strong); list-style: none;
+}
+.phx__contact li { display: grid; gap: var(--sp-1); }
+.phx__contact .phx__n { font-size: .9375rem; color: var(--meta); }
+.phx__contact .photo { aspect-ratio: 1; }
+@container band (min-width: 720px) {
+  .phx__plate { margin: 0; }
+}
+@container band (min-width: 1100px) {
+  .phx__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: stretch; }
+  /* the plate takes the height of the words beside it, never more */
+  .phx__plate { grid-column: 1 / 9; position: relative; min-height: 480px; }
+  .phx__plate .photo { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; }
+  .phx__info { grid-column: 9 / 13; padding-left: var(--sp-3); }
+}
+
+/* photo essays as contact sheets: the frames run as tall as the words beside them */
+.sheets { margin: 0; padding: 0; list-style: none; }
+.sheet { position: relative; display: grid; gap: var(--sp-4) var(--gutter); padding-block: var(--sp-6); border-top: 1px solid var(--rule); }
+.sheet:first-child { padding-top: 0; border-top: 0; }
+.sheet__head { display: grid; row-gap: var(--sp-2); align-content: start; }
+.sheet__n { font: italic 700 2rem/1 var(--serif); color: var(--meta); font-variant-numeric: lining-nums; }
+.sheet__title { margin: 0; font: italic 600 clamp(1.5rem, 1.25rem + .9cqi, 2rem)/1.1 var(--serif); letter-spacing: -.01em; text-wrap: balance; }
+.sheet__title a { text-decoration: none; }
+.sheet__title a::after { content: ""; position: absolute; inset: 0; }
+.sheet:hover .sheet__title a { text-decoration: underline; text-decoration-thickness: .05em; text-underline-offset: .12em; text-decoration-color: var(--context); }
+.sheet__dek { margin: 0; max-width: 46ch; font: 400 1rem/1.5 var(--serif); color: var(--text-2); text-wrap: pretty; }
+.sheet__by { margin: 0; font: 500 var(--t-micro)/1.4 var(--sans); color: var(--meta); }
+.sheet__frames { display: grid; grid-template-columns: repeat(var(--m), minmax(0, 1fr)); gap: var(--sp-2); margin: 0; padding: 0; list-style: none; }   /* phones: every frame in view */
+.sheet__frames .photo { aspect-ratio: 3 / 2; }
+@container (min-width: 720px) {
+  .sheet__frames { grid-template-columns: repeat(var(--n), minmax(0, 1fr)); }
+}
+@container (min-width: 1100px) {
+  .sheet { grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: stretch; }
+  .sheet__head { grid-column: 1 / 5; padding-right: var(--sp-4); }
+  .sheet__frames { grid-column: 5 / 13; }
+  .sheet__frames li { display: flex; }
+  .sheet__frames .photo { flex: 1 1 auto; min-height: 180px; height: auto; aspect-ratio: auto; }
+}
+
+/* single frames in justified rows: every picture keeps its shape, every row ends flush */
+.justified { display: grid; gap: var(--sp-2); }
+.justified__row { display: grid; gap: var(--sp-2); }
+.justified figure { position: relative; margin: 0; min-width: 0; }
+.justified .photo { aspect-ratio: var(--r); }
+.justified .phx__n { position: absolute; left: 0; bottom: 0; padding: 6px 9px 5px; background: var(--tot-ink); color: var(--stone-0); font-size: 1rem; }
+.justified__cap { margin: 0 0 var(--sp-6); }
+.justified__cap b { font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+@container (min-width: 720px) {
+  .justified__row { display: flex; }
+  .justified figure { flex: var(--r) 1 0; }
+}

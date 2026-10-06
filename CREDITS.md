@@ -38,6 +38,24 @@ lettered.
 | `palestinian-museum` | The Palestinian Museum in Birzeit. | Dan Palraz | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:The_Palestinian_Museum.jpg) | 2023-06-04 |
 | `ramallah-market` | Ramallah market. | Davide Mauro | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:Ramallah_market_02.jpg) | 2022-11-11 |
 
+## Video
+
+The video templates use openly licensed clips from **Wikimedia Commons**. One is
+played in full; the others appear as stills taken from the clips (their posters).
+Replace them with the newsroom's own video before launch, or keep the credits.
+
+| File | What it shows | Author | Licence | Source | Filmed |
+| --- | --- | --- | --- | --- | --- |
+| `media/nablus-old-city-walk.mp4`, stills `video-nablus-walk`, `video-nablus-ch1`…`ch5` | A walking tour of the old city of Nablus, led by Mustafa Azizi | Abraham Weizfeld | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0) | [Commons](https://commons.wikimedia.org/wiki/File:Nablus_Old_City_Tour_by_Mustafa_Azizi_2016-01-06_3-4.webm) | 2016-01-06 |
+| still `video-jerusalem-dusk` | Dusk over the Old City of Jerusalem from the Mount of Olives | Davide Mauro | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:Sunset_over_Jerusalem_from_the_Mount_of_Olives.webm) | 2022-11-12 |
+| still `video-olives-2014` | Sunset over the Old City from the Mount of Olives | Marcus Cyron | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0) | [Commons](https://commons.wikimedia.org/wiki/File:Mount_of_Olives_in_Jerusalem_5.webm) | 2014-12-27 |
+| still `video-olives-2011` | Sunset over the Old City from the Mount of Olives | Marcus Cyron | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0) | [Commons](https://commons.wikimedia.org/wiki/File:Mount_of_Olives_in_Jerusalem_3.webm) | 2011-08-10 |
+| still `video-old-city-day` | The Old City of Jerusalem by day, from the Dominus Flevit church | Deror Avi | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0) | [Commons](https://commons.wikimedia.org/wiki/File:Views_of_the_Old_City_from_the_Dominus_Flevit_Church_P1020513.ogv) | n.d. |
+
+Changes: the Nablus clip is shown in full and only re-encoded (H.264, 1280×720,
+sound kept). Stills are single frames, resized. `media/nablus-old-city-walk.en.vtt`
+is a placeholder: the captions and the transcript are still to be written.
+
 ## Typefaces
 
 Self-hosted from `fonts/`, trimmed to the weights in use (variable fonts,

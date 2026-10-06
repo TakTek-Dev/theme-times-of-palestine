@@ -1,0 +1,57 @@
+/* ═════════════════════════ Explainer: questions answered in order ═════════════════════════ */
+.xpl__body { display: grid; gap: var(--sp-6) var(--gutter); padding-top: var(--sp-7); }
+
+/* the short answer: context colour, read first */
+.xpl__short { padding: var(--sp-5); background: var(--green-50); border-top: 2px solid var(--context); }
+.xpl__short ul { display: grid; gap: var(--sp-3); margin: var(--sp-3) 0 0; padding: 0; list-style: none; }
+.xpl__short li { position: relative; padding-left: 1.3em; font: 400 1.0625rem/1.5 var(--serif); }
+.xpl__short li::before {
+  content: ""; position: absolute; left: 0; top: .55em; width: 11px; aspect-ratio: var(--leaf-ratio); rotate: -90deg; background: var(--context);
+  -webkit-mask: url("../img/brand/leaf.svg") center / contain no-repeat; mask: url("../img/brand/leaf.svg") center / contain no-repeat;
+}
+
+/* the questions, numbered; the one being read is marked */
+.xpl__toc ol { margin: var(--sp-2) 0 0; padding: 0; list-style: none; border-top: 1px solid var(--rule); }
+.xpl__toc li { border-bottom: 1px solid var(--rule); }
+.xpl__toc a {
+  display: grid; grid-template-columns: 2rem minmax(0, 1fr); align-items: baseline; min-height: 44px; padding-block: .6em;
+  font: 600 var(--t-ui)/1.3 var(--sans); color: var(--text-2); text-decoration: none;
+}
+.xpl__tn { font: italic 700 1rem/1 var(--serif); color: var(--meta); font-variant-numeric: lining-nums; }
+.xpl__toc a:hover, .xpl__toc a[aria-current="true"] { color: var(--text); }
+.xpl__toc a[aria-current="true"] .xpl__tn { color: var(--context); }
+
+.xpl__text { min-width: 0; font: 400 1.1875rem/1.66 var(--serif); }
+.xpl__q + .xpl__q { margin-top: var(--sp-8); }
+.xpl__q h2 {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: .45em; align-items: baseline;
+  margin: 0 0 .55em; font: 600 var(--t-h2)/1.1 var(--serif); letter-spacing: -.012em; text-wrap: balance;
+}
+.xpl__n { font: italic 700 .8em/1 var(--serif); color: var(--context); font-variant-numeric: lining-nums; }
+.xpl__q > p { margin: 0 0 1em; max-width: 66ch; text-wrap: pretty; }
+.xpl__q a { text-decoration-color: var(--context); text-underline-offset: .15em; }
+.xpl__q .sidenote { max-width: 46ch; margin: 1.2em 0 1.4em; }
+
+/* what we don't know yet: a dashed edge, like the days still to come in the archive */
+.xpl__unknown { margin: 1.2em 0 0; padding: var(--sp-4) var(--sp-5); border: 1px dashed var(--context); }
+.xpl__unknown .label { color: var(--context); }
+.xpl__unknown p:last-child { margin: 0; font: 400 1rem/1.5 var(--serif); color: var(--text-2); }
+
+.xpl__h { margin: 2em 0 .6em; font: 700 1.125rem/1.3 var(--sans); }
+.xpl__terms { display: grid; margin: 0; border-top: 1px solid var(--rule); }
+.xpl__terms div { display: grid; gap: .2em var(--sp-4); padding-block: var(--sp-3); border-bottom: 1px solid var(--rule); }
+.xpl__terms dt { font: 700 var(--t-ui)/1.45 var(--sans); }
+.xpl__terms dd { margin: 0; font: 400 1.0625rem/1.5 var(--serif); color: var(--text-2); }
+.xpl__sources { display: grid; gap: var(--sp-2); margin: 0; padding: 0; list-style: none; font: 500 var(--t-ui)/1.5 var(--sans); color: var(--text-2); }
+
+@container art (min-width: 720px) {
+  .xpl__body { grid-column: 1 / 8; }
+  .xpl__terms div { grid-template-columns: 10rem minmax(0, 1fr); align-items: baseline; }
+}
+@container art (min-width: 1100px) {
+  /* the questions on the left, the answers on the spine, the short answer stays in view */
+  .xpl__body { grid-column: 1 / -1; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: start; padding-top: var(--sp-9); }
+  .xpl__toc { grid-column: 1 / 4; grid-row: 1; position: sticky; top: calc(var(--bar-h) + var(--sp-5)); padding-right: var(--sp-4); }
+  .xpl__text { grid-column: 4 / 10; grid-row: 1; }
+  .xpl__short { grid-column: 10 / 13; grid-row: 1; position: sticky; top: calc(var(--bar-h) + var(--sp-5)); }
+}

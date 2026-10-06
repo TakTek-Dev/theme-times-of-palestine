@@ -40,8 +40,115 @@
   });
 
   // Preview the header's three moods with ?news=calm | live | breaking
-  const mood = new URLSearchParams(location.search).get('news');
+  const query = new URLSearchParams(location.search);
+  const mood = query.get('news');
   if (header && ['calm', 'live', 'breaking'].includes(mood)) header.dataset.news = mood;
+
+  /* ── Demo: one file per template ───────────────────────────────────────── */
+  // Sections, topics, filters and searches link to the same template with a query
+  // string. Until a CMS renders each one, the page takes the name of the link that
+  // was followed and marks it as current, so a reviewer always knows where they are.
+  const page = location.pathname.split('/').pop() || 'index.html';
+  const SITE_NAME = ' | The Times of Palestine';
+  const slug = (name) => (/^[a-z0-9-]+$/.test(query.get(name) || '') ? query.get(name) : null);
+  const linkText = (href) => $(`a[href="${href}"]`)?.textContent.trim() || null;
+  const titleCase = (s) => s.replace(/-/g, ' ').replace(/^./, (c) => c.toUpperCase());
+
+  function markChrome(href) {        // the header, menu and footer point at this page
+    const chrome = '.site-header a, .site-footer a';
+    const to = $$(chrome).filter((a) => a.getAttribute('href') === href);
+    if (!to.length) return;
+    $$(chrome).forEach((a) => { if (a.getAttribute('aria-current') === 'page') a.removeAttribute('aria-current'); });
+    to.forEach((a) => a.setAttribute('aria-current', 'page'));
+  }
+  function markTab(href, value = 'page') {
+    const tab = $$('.tabs a').find((a) => a.getAttribute('href') === href);
+    if (!tab) return null;
+    $$('.tabs a[aria-current]').forEach((a) => a.removeAttribute('aria-current'));
+    tab.setAttribute('aria-current', value);
+    return tab;
+  }
+  function rename(label, dek) {      // the masthead, the breadcrumb and the standfirst
+    const title = $('main h1');
+    if (title) title.textContent = label;
+    const crumb = $('.crumbs [aria-current="page"]');
+    if (crumb) crumb.textContent = label;
+    const standfirst = $('.secp__dek');
+    if (standfirst) standfirst.textContent = dek;
+  }
+
+  const section = page === 'section.html' && slug('section');
+  if (section) {
+    const href = `section.html?section=${section}`;
+    const tab = markTab(href);
+    if (tab) {                       // a topic inside this section: only the tab moves
+      document.title = `${$('main h1').textContent}: ${tab.textContent}${SITE_NAME}`;
+    } else {                         // another section: the template takes its name
+      const label = linkText(href) || titleCase(section);
+      rename(label, `[Section standfirst: what ${label} covers, in one or two lines.]`);
+      const tabs = $('.tabs');
+      if (tabs) tabs.setAttribute('aria-label', `${label} topics`);
+      markChrome(href);
+      document.title = label + SITE_NAME;
+    }
+  }
+
+  const topic = page === 'tag.html' && slug('tag');
+  if (topic) {
+    const label = linkText(`tag.html?tag=${topic}`) || titleCase(topic);
+    rename(label, `[Topic standfirst: what our coverage of ${label} follows.]`);
+    $$('[data-follow]').forEach((button) => { button.dataset.follow = topic; });
+    document.title = `${label}: all our coverage${SITE_NAME}`;
+  }
+
+  const kind = ['opinion.html', 'video.html', 'photos.html'].includes(page) && slug('type');
+  if (kind) {                        // a filter of this front: its tab, and its link in the menu
+    const href = `${page}?type=${kind}`;
+    const tab = markTab(href);
+    if (tab) {
+      markChrome(href);
+      document.title = (page === 'opinion.html' ? tab.textContent : `${$('main h1').textContent}: ${tab.textContent}`) + SITE_NAME;
+    }
+  }
+
+  const day = page === 'archive.html' && /^\d{4}-\d{2}-\d{2}$/.test(query.get('date') || '') ? query.get('date') : null;
+  const dayLink = day && $(`.arch__days a[href="archive.html?date=${day}"]`);
+  if (dayLink) {
+    $$('.arch__days a[aria-current]').forEach((a) => a.removeAttribute('aria-current'));
+    dayLink.setAttribute('aria-current', 'date');
+    document.title = `Archive: ${dayLink.getAttribute('aria-label').split(',')[0]} 2026${SITE_NAME}`;
+  }
+
+  const asked = (query.get('q') || '').trim();
+  const said = $('.srch__meta h1 b');
+  if (asked && said) {               // the sample results stay; the question is the reader's
+    said.textContent = `“${asked}”`;
+    document.title = document.title.replace(/“[^”]*”/, `“${asked}”`);
+    const box = $('#search-q');
+    if (box) box.value = asked;
+    $$('.tabs a').forEach((a) => {
+      const url = new URL(a.href);
+      url.searchParams.set('q', asked);
+      a.setAttribute('href', a.getAttribute('href').split('?')[0] + url.search);
+    });
+    const type = slug('type');
+    const tab = type && $$('.tabs a').find((a) => new URL(a.href).searchParams.get('type') === type);
+    if (tab) {
+      $$('.tabs a[aria-current]').forEach((a) => a.removeAttribute('aria-current'));
+      tab.setAttribute('aria-current', 'true');
+    }
+  }
+
+  // Forms that submit to this page show the choices that were made
+  $$(`form[action="${page}"]`).forEach((form) => {
+    Array.from(form.elements).forEach((field) => {
+      if (field.name && query.has(field.name) && !['submit', 'checkbox', 'radio'].includes(field.type)) field.value = query.get(field.name);
+    });
+  });
+  $$('select[form]').forEach((field) => {
+    const form = document.getElementById(field.getAttribute('form'));
+    if (form && form.getAttribute('action') === page && query.has(field.name)) field.value = query.get(field.name);
+  });
 
   /* ── Menu: the mark is the button; open, it turns into the triskelion ───── */
   const menu = $('#site-menu');
@@ -283,6 +390,37 @@
       render(on);
       try { localStorage.setItem(key, on ? '1' : '0'); } catch { /* storage blocked */ }
       say(on ? 'Following this topic' : 'No longer following');
+    });
+  });
+
+  /* ── Video: a leaf plays it; chapters jump to their moment ─────────────── */
+  const startAt = Number(query.get('t')) || 0;      // ?t=24 opens a video at a chapter
+  $$('[data-player]').forEach((player) => {
+    const video = $('video', player);
+    const play = $('[data-play]', player);
+    if (!video) return;
+    const chapters = $$('[data-seek]').filter((button) => button.dataset.for === video.id);
+    const begin = () => {
+      if (play) play.hidden = true;
+      video.controls = true;
+    };
+    const start = () => video.play().catch(() => { /* the browser's own controls stay for a retry */ });
+    if (play) {                      // the poster's own button first, the browser's controls once it plays
+      video.controls = false;
+      play.hidden = false;
+      play.addEventListener('click', () => { begin(); start(); video.focus(); });
+    }
+    video.addEventListener('play', begin);
+    if (startAt) video.currentTime = startAt;
+    chapters.forEach((button) => button.addEventListener('click', () => {
+      begin();
+      video.currentTime = Number(button.dataset.seek);
+      start();
+      if (player.getBoundingClientRect().top < 60) player.scrollIntoView({ block: 'start', behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+    }));
+    video.addEventListener('timeupdate', () => {
+      const now = chapters.filter((button) => Number(button.dataset.seek) <= video.currentTime).pop();
+      chapters.forEach((button) => button.setAttribute('aria-current', String(button === now)));
     });
   });
 

@@ -60,7 +60,7 @@
 .authorbox { position: relative; display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: var(--sp-2) var(--sp-4); align-items: start; }
 .authorbox .portrait { grid-row: 1 / span 3; width: 72px; }
 .authorbox > :not(.portrait) { grid-column: 2; margin: 0; }
-.authorbox__name { font: 700 var(--t-ui)/1.3 var(--sans); }
+.authorbox .authorbox__name { font: 700 var(--t-ui)/1.3 var(--sans); color: var(--text); }
 .authorbox__name a { text-decoration: none; }
 .authorbox__name a:hover { text-decoration: underline; text-decoration-color: var(--context); text-underline-offset: .2em; }
 .authorbox p { font: 400 1rem/1.5 var(--serif); color: var(--text-2); }
