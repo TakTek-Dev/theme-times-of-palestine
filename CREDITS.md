@@ -37,6 +37,10 @@ lettered.
 | `olive-picking-hebron` | Hand-picking olives, Hebron governorate. | M sh شراونة محمد | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:%D9%82%D8%B7%D9%81_%D8%AB%D9%85%D8%A7%D8%B1_%D8%A7%D9%84%D8%B2%D9%8A%D8%AA%D9%88%D9%86.jpg) | 2020-10-26 |
 | `palestinian-museum` | The Palestinian Museum in Birzeit. | Dan Palraz | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:The_Palestinian_Museum.jpg) | 2023-06-04 |
 | `ramallah-market` | Ramallah market. | Davide Mauro | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:Ramallah_market_02.jpg) | 2022-11-11 |
+| `solidarity-dunedin-2025` | A Palestine solidarity march into the Octagon in Dunedin, New Zealand. | Hillmenco | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) | [Commons](https://commons.wikimedia.org/wiki/File:Palestine_solidarity_march_Dunedin_August_2025.jpg) | 2025-08-23 |
+| `solidarity-london-2023` | Marchers with flags and placards in London, 11 November 2023. | Julian Stallabrass | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0) | [Commons](https://commons.wikimedia.org/wiki/File:Solidarity_protest_for_Palestine_in_London_(53329879043).jpg) | 2023-11-11 |
+| `solidarity-malaysia-2023` | A crowd with Palestinian flags at a solidarity rally in Malaysia. | Zahirul Nukman | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:Himpunan_10k_Solidariti_Palestin_7.jpg) | 2023-10-28 |
+| `solidarity-minneapolis-2016` | Demonstrators with a Palestinian flag and placards on Lake Street, Minneapolis. | Fibonacci Blue | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0) | [Commons](https://commons.wikimedia.org/wiki/File:Rally_in_solidarity_with_Palestine_on_the_anniversary_of_the_Deir_Yassin_massacre_(25732047013).jpg) | 2016-04-09 |
 
 ## Video
 
