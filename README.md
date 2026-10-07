@@ -22,7 +22,7 @@ Every template, with a thumbnail, is listed on
 
 | File | Template |
 | --- | --- |
-| `index.html` | Home: lead story with its package, "The day so far" timeline, context card, Gaza front, photo gallery, ledger of places, the context desk (analysis and opinion), most read with the newsletter, culture spread |
+| `index.html` | Home: the lead story's photograph carrying its headline, beside "The day so far" at the same height; the Gaza front; the photo gallery; West Bank & Jerusalem in the same form as Gaza, with its updates; the context desk (analysis and opinion); most read; Solidarity |
 | `article.html` | Story: headline, byline and sharing, lead photograph, body on the spine with side notes, pull quote (Arabic and English), step timeline, picture pair, standards note, author box, related stories |
 | `live.html` | Live coverage: status, key events (sticky on desktop), updates feed with "new updates" and "older updates", context column |
 | `section.html` | Section front (Gaza): giant title, topics, front strip, gallery, two-column archive, most read |
@@ -141,7 +141,9 @@ The tool is standard-library Python 3.8+.
   Scales in `tokens.css` (`--t-display` 44→92px down to `--t-micro` 12px).
 - **The menu is the mark**: three stacked leaves that light up red, green and
   ink on hover and turn into a triskelion when open.
-- Photographs stay rectangular, are cropped by ratio only and never carry text.
+- Photographs stay rectangular and are cropped by ratio only. Only one carries
+  text: the home page's lead, whose headline sits on an ink scrim (dense behind
+  every line, at least 8:1 contrast) beside "The day so far", at its height.
 
 Components answer to their own width through container queries, so the same
 markup works in a sidebar, a column or across the page. Breakpoints:

@@ -8,25 +8,28 @@
   display: grid; grid-template-columns: minmax(0, 1fr); row-gap: var(--sp-9);
   padding-block: var(--sp-6) var(--sp-10);
 }
-.lead { display: grid; row-gap: var(--sp-4); align-content: start; }
-.lead__head { display: grid; row-gap: var(--sp-3); }
-.lead__title {
-  margin: 0; max-width: 18ch;
-  font: italic 700 var(--t-display)/.98 var(--serif); letter-spacing: -.022em; text-wrap: balance;
+/* the lead: its photograph carries the headline on an ink scrim (client, October 2026) */
+.lead { display: flex; flex-direction: column; min-width: 0; }
+.lead__frame { position: relative; display: block; margin: 0 calc(-1 * var(--margin)); background: var(--tot-ink); overflow: hidden; }
+.lead__frame .photo { aspect-ratio: 4 / 5; }
+.lead__over {
+  --fade: var(--sp-9);
+  position: absolute; inset: auto 0 0 0; display: grid; row-gap: var(--sp-3); padding: var(--fade) var(--margin) var(--sp-5);
+  /* the scrim is there for legibility: dense ink behind every line of text, fading only above it */
+  background: linear-gradient(to top, rgb(25 7 7 / .9) 0%, rgb(25 7 7 / .8) calc(100% - var(--fade)), rgb(25 7 7 / 0) 100%);
+  --text: var(--stone-0); --text-2: var(--stone-200); --meta: var(--stone-300); --focus: var(--green-300); --context: var(--green-300);
+  color: var(--text);
 }
-.lead__text { display: grid; row-gap: var(--sp-4); align-content: start; }
-.lead__dek { margin: 0; max-width: 40ch; font: 400 var(--t-dek)/1.42 var(--serif); color: var(--text-2); text-wrap: pretty; }
-.lead__photo { margin: var(--sp-2) calc(-1 * var(--margin)) 0; }
-.lead__photo .photo { aspect-ratio: 4 / 3; }
-.lead__photo .caption { padding-inline: var(--margin); }
+.lead__over .kicker a { position: relative; z-index: 1; }
+.lead__title { margin: 0; max-width: 20ch; font: italic 700 clamp(2rem, 1.35rem + 2.6cqi, 3.875rem)/1 var(--serif); letter-spacing: -.02em; text-wrap: balance; }
+.lead__title a { color: var(--text); text-decoration: none; }
+.lead__title a::after { content: ""; position: absolute; inset: 0; }       /* the whole picture opens the story */
+.lead:hover .lead__title a { text-decoration: underline; text-decoration-thickness: .05em; text-underline-offset: .12em; text-decoration-color: var(--green-300); }
+.lead__dek { display: none; margin: 0; max-width: 46ch; font: 400 var(--t-dek)/1.42 var(--serif); color: var(--text-2); text-wrap: pretty; }
+.lead__over .meta a { position: relative; z-index: 1; color: var(--text); }
+.lead__cap { padding-inline: var(--margin); }
 
 .hero__rail { display: grid; row-gap: var(--sp-10); align-content: start; }
-.lead__pack { display: none; }
-.pack { position: relative; display: grid; row-gap: var(--sp-1); }
-.pack + .pack { padding-top: var(--sp-4); border-top: 1px solid var(--rule); }
-.pack a { font: 600 1.0625rem/1.3 var(--serif); color: var(--text); text-decoration: none; text-wrap: pretty; }
-.pack a::after { content: ""; position: absolute; inset: 0; }
-.pack:hover a { text-decoration: underline; text-decoration-color: var(--context); text-underline-offset: .15em; }
 
 /* Hero — tablet: 8 columns */
 @container hero (min-width: 720px) {
@@ -35,39 +38,35 @@
     grid-template-columns: repeat(8, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: var(--sp-10);
     padding-top: var(--sp-8);
   }
-  .lead { grid-column: 1 / -1; grid-template-columns: repeat(8, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: var(--sp-6); }
-  .lead__head { grid-column: 1 / -1; }
-  .lead__text { grid-column: 1 / 7; }
-  .lead__photo { grid-column: 1 / -1; margin: 0; }
-  .lead__photo .photo { aspect-ratio: 3 / 2; }
-  .lead__photo .caption { padding: 0; }
-  .hero__rail { grid-column: 1 / -1; grid-template-columns: repeat(8, minmax(0, 1fr)); column-gap: var(--gutter); }
-  .dayline { grid-column: 1 / 6; }
-  .context { grid-column: 6 / 9; }
+  .lead { grid-column: 1 / -1; }
+  .lead__frame { margin: 0; }
+  .lead__frame .photo { aspect-ratio: 3 / 2; }
+  .lead__over { --fade: var(--sp-10); padding: var(--fade) var(--sp-7) var(--sp-6); }
+  .lead__dek { display: block; }
+  .lead__cap { padding: 0; }
+  .hero__rail { grid-column: 1 / -1; }
 }
 
-/* Hero — desktop: the rail on the spine holds the day (red) and its context (green);
-   the record (ink) takes the page, led by its photograph */
+/* Hero — desktop: the day so far on the spine, and beside it the lead,
+   its photograph carrying the headline */
 @container hero (min-width: 1100px) {
   .hero__grid {
     --mark-w: 42.4px;
     grid-template-columns: repeat(12, minmax(0, 1fr)); row-gap: var(--sp-9);
     padding-block: var(--sp-9) var(--sp-11);
   }
-  .lead { grid-column: 4 / 13; grid-row: 1; grid-template-columns: repeat(9, minmax(0, 1fr)); row-gap: var(--sp-6); }
-  .lead__head { row-gap: var(--sp-4); }
-  .lead__head .kicker { font-size: var(--t-ui); }
-  .lead__title { max-width: 21ch; }
-  .lead { grid-template-rows: auto auto 1fr; }
-  .lead__text { grid-column: 1 / 6; }
-  .lead__pack { display: grid; grid-column: 6 / 10; grid-row: 2; align-content: start; row-gap: var(--sp-4); padding-left: var(--sp-5); border-left: 1px solid var(--rule); }
-  .lead__photo { grid-row: 3; margin-top: var(--sp-2); display: flex; flex-direction: column; }
-  .lead__photo .photo { flex: 1 1 auto; height: 0; min-height: 420px; aspect-ratio: auto; }
-  .hero__rail { display: flex; flex-direction: column; }
-  .hero__rail .context { flex: 1 1 auto; display: flex; flex-direction: column; gap: var(--sp-3); }
-  .hero__rail .context__photo { flex: 1 1 auto; display: flex; margin: 0 0 var(--sp-1); }
-  .hero__rail .context__photo .photo { flex: 1 1 auto; height: auto; min-height: 170px; aspect-ratio: auto; }
-  .hero__rail { grid-column: 1 / 4; grid-row: 1; grid-template-columns: minmax(0, 1fr); row-gap: var(--sp-9); padding-right: var(--sp-4); }
-  .dayline, .context { grid-column: auto; }
+  /* the lead stands beside the day so far and takes exactly its height */
+  .hero__grid { align-items: stretch; }
+  .lead { grid-column: 4 / 13; grid-row: 1; }
+  .lead__frame { flex: 1 1 auto; min-height: 520px; }
+  .lead__frame .photo { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; }
+  .lead__over { --fade: var(--sp-11); padding: var(--fade) var(--sp-8) var(--sp-7); }
+  .lead__over .kicker { font-size: var(--t-ui); }
+  .hero__rail { grid-column: 1 / 4; grid-row: 1; padding-right: var(--sp-4); }
   .dl__thumb { width: 64px; height: 64px; }
+}
+/* a narrower desktop: the day so far takes four columns, so it does not run long */
+@container hero (min-width: 1100px) and (max-width: 1299.98px) {
+  .lead { grid-column: 5 / 13; }
+  .hero__rail { grid-column: 1 / 5; }
 }

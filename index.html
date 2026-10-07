@@ -27,12 +27,12 @@
     <link rel="alternate" type="application/rss+xml" title="The Times of Palestine" href="feed.xml">
     <link rel="preload" href="fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/newsreader-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="css/core.css?v=4">
+    <link rel="stylesheet" href="css/core.css?v=5">
     <script>document.documentElement.className = "js";</script>
-    <script src="js/main.js?v=4" defer></script>
+    <script src="js/main.js?v=5" defer></script>
     <!-- /tot:head -->
-    <link rel="stylesheet" href="css/modules.css?v=4">
-    <link rel="stylesheet" href="css/home.css?v=4">
+    <link rel="stylesheet" href="css/modules.css?v=5">
+    <link rel="stylesheet" href="css/home.css?v=5">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"The Times of Palestine","url":"https://paltimesnews.com/","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://paltimesnews.com/search.html?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsMediaOrganization","name":"The Times of Palestine","url":"https://paltimesnews.com/","logo":{"@type":"ImageObject","url":"https://paltimesnews.com/img/icons/icon-512.png","width":512,"height":512}}</script>
   </head>
@@ -148,29 +148,16 @@
       <section class="hero" aria-label="Top stories">
         <div class="wrap hero__grid">
           <article class="lead">
-            <div class="lead__head">
-              <p class="kicker"><a href="section.html?section=west-bank">West Bank</a><span class="kicker__sep" aria-hidden="true">·</span><span>Feature</span></p>
-              <h2 class="lead__title hl"><a href="article.html">In Nablus, the olive harvest begins before dawn</a></h2>
-            </div>
-            <div class="lead__text">
-              <p class="lead__dek">For families who have tended the same groves for generations, October means early starts, shared work and a harvest that is never guaranteed.</p>
-              <p class="meta"><span>By <a href="author.html">[Reporter name]</a></span><span class="meta__sep" aria-hidden="true">·</span><span>Nablus</span><span class="meta__sep" aria-hidden="true">·</span><span>8 min read</span></p>
-            </div>
-            <div class="lead__pack">
-              <p class="label">More on the harvest</p>
-              <div class="pack">
-                <p class="kicker">Agriculture</p>
-                <a href="article.html">The Nabali olive, and why growers prize it</a>
-              </div>
-              <div class="pack">
-                <p class="kicker kicker--context"><span class="brace brace--l" aria-hidden="true"></span>Explained<span class="brace brace--r" aria-hidden="true"></span></p>
-                <a href="explainer.html">Nabulsi soap: where the oil goes after the press</a>
+            <div class="lead__frame">
+              <img class="photo" src="img/photos/olive-harvest-nablus-960.webp" srcset="img/photos/olive-harvest-nablus-160.webp 160w, img/photos/olive-harvest-nablus-320.webp 320w, img/photos/olive-harvest-nablus-640.webp 640w, img/photos/olive-harvest-nablus-800.webp 800w, img/photos/olive-harvest-nablus-960.webp 960w, img/photos/olive-harvest-nablus-1280.webp 1280w, img/photos/olive-harvest-nablus-1600.webp 1600w" sizes="(min-width: 1100px) 70vw, 100vw" alt="An older man in a cap reaches into an olive tree while a boy beside him smiles at the camera." width="1600" height="1067" fetchpriority="high" style="object-position: 45% 40%">
+              <div class="lead__over">
+                <p class="kicker"><a href="section.html?section=west-bank">West Bank</a><span class="kicker__sep" aria-hidden="true">·</span><span>Feature</span></p>
+                <h2 class="lead__title"><a href="article.html">In Nablus, the olive harvest begins before dawn</a></h2>
+                <p class="lead__dek">For families who have tended the same groves for generations, October means early starts, shared work and a harvest that is never guaranteed.</p>
+                <p class="meta"><span>By <a href="author.html">[Reporter name]</a></span><span class="meta__sep" aria-hidden="true">·</span><span>Nablus</span><span class="meta__sep" aria-hidden="true">·</span><span>8 min read</span></p>
               </div>
             </div>
-            <figure class="lead__photo">
-              <img class="photo" src="img/photos/olive-harvest-nablus-960.webp" srcset="img/photos/olive-harvest-nablus-160.webp 160w, img/photos/olive-harvest-nablus-320.webp 320w, img/photos/olive-harvest-nablus-640.webp 640w, img/photos/olive-harvest-nablus-800.webp 800w, img/photos/olive-harvest-nablus-960.webp 960w, img/photos/olive-harvest-nablus-1280.webp 1280w, img/photos/olive-harvest-nablus-1600.webp 1600w" sizes="(min-width: 1100px) 66vw, 100vw" alt="An older man in a cap reaches into an olive tree while a boy beside him smiles at the camera." width="1600" height="1067" fetchpriority="high" style="object-position: 45% 62%">
-              <figcaption class="caption">A grower and a boy picking olives near Nablus. <span class="caption__credit">Photo: Oday yaish / Wikimedia Commons, CC BY-SA 4.0</span></figcaption>
-            </figure>
+            <p class="caption lead__cap">A grower and a boy picking olives near Nablus. <span class="caption__credit">Photo: Oday yaish / Wikimedia Commons, CC BY-SA 4.0</span></p>
           </article>
           <div class="hero__rail">
             <section class="dayline" aria-labelledby="dayline-title">
@@ -229,15 +216,6 @@
               </ol>
               <div class="dayline__foot"><a class="link-more" href="live.html">All of today’s updates<span class="arrow" aria-hidden="true"><span class="lf"></span></span></a></div>
             </section>
-            <article class="context">
-              <figure class="context__photo">
-                <img class="photo" src="img/photos/jenin-roof-cistern-800.webp" srcset="img/photos/jenin-roof-cistern-160.webp 160w, img/photos/jenin-roof-cistern-320.webp 320w, img/photos/jenin-roof-cistern-640.webp 640w, img/photos/jenin-roof-cistern-800.webp 800w" sizes="auto, (min-width: 1100px) 22vw, (min-width: 720px) 34vw, 100vw" alt="Black water tanks on a whitewashed rooftop in Jenin, under a clear sky." width="800" height="532" loading="lazy" decoding="async">
-              </figure>
-              <p class="kicker kicker--context"><span class="brace brace--l" aria-hidden="true"></span>Explained<span class="brace brace--r" aria-hidden="true"></span></p>
-              <h3 class="context__title hl"><a href="explainer.html">How water reaches, and fails to reach, West Bank villages</a></h3>
-              <p class="context__dek">Where the water comes from, who manages it, and why supply differs from one village to the next.</p>
-              <a class="link-more link-more--context" href="explainer.html">Read the explainer<span class="arrow" aria-hidden="true"><span class="lf"></span></span></a>
-            </article>
           </div>
         </div>
       </section>
