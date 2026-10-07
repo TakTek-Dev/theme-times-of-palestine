@@ -17,7 +17,7 @@ import os
 import re
 import sys
 
-V = 3                 # asset version, written as ?v=N on every css/ and js/ reference
+V = 4                 # asset version, written as ?v=N on every css/ and js/ reference
 BASE_404 = '/theme-times-of-palestine/'   # where the site is served from: '/' at a domain root, '/<repository>/' on a GitHub project site
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
