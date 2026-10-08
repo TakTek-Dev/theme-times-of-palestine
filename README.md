@@ -29,7 +29,7 @@ Every template, with a thumbnail, is listed on
 | `author.html` | Reporter profile, latest story as a spread, earlier stories |
 | `search.html` | Search results with facets, highlighted terms and a context card |
 | `photo-essay.html` | Photo essay on ink: numbered plates in four layouts |
-| `about.html` | About, how to read us, standards, corrections, contact |
+| `about.html` | About, how to read us, standards, contact |
 | `404.html` | Not found, with search and the main sections |
 | `opinion.html` | Analysis & opinion front: the context desk on green, columnists, latest pieces beside the letters to the editor, most read |
 | `opinion-article.html` | Opinion column: label and column name, italic headline, the writer's byline, green drop cap, opinion note in the rail, standards note, more from the column |
