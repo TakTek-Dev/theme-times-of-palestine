@@ -12,19 +12,16 @@
   position: relative; display: grid; row-gap: var(--sp-9);
   padding-block: var(--sp-10) var(--sp-6);
 }
-/* the notch: a leaf cut out of the footer's top edge, on the spine */
-.ftr::before {
-  content: ""; position: absolute; top: -1px; left: calc(var(--mark-w) / 2); width: 34px; aspect-ratio: var(--leaf-ratio);
-  translate: -50% 0; background: var(--bg);
-  -webkit-mask: url("../img/brand/leaf.svg") center / contain no-repeat; mask: url("../img/brand/leaf.svg") center / contain no-repeat;
-}
 .ftr__statement {
   --t-statement: clamp(2.5rem, 1.6rem + 4cqi, 6.5rem);
-  display: flex; flex-wrap: wrap; align-items: flex-end; column-gap: .3em; row-gap: var(--sp-3);
+  display: flex; flex-wrap: wrap; align-items: baseline; column-gap: .3em; row-gap: var(--sp-3);
   margin: 0; font: italic 700 var(--t-statement)/.9 var(--serif); letter-spacing: -.02em;
 }
-.ftr__logo { display: block; width: 100%; height: auto; }
-.ftr__statement-tail { display: block; padding-bottom: .02em; }
+/* the wordmark sits on the same baseline as the words beside it, at the same x-height:
+   its lowercase is .60 of the logo's height and Newsreader italic's x-height .53em, so the
+   logo is .883em tall; its baseline is 2.3% above the logo's foot, hence the nudge down */
+.ftr__logo { display: block; width: 100%; height: auto; translate: 0 2.3%; }
+.ftr__statement-tail { display: block; }
 .ftr__about { margin: calc(-1 * var(--sp-5)) 0 0; max-width: 34ch; font: 400 var(--t-dek)/1.42 var(--serif); color: var(--inv-text-2); text-wrap: pretty; }
 
 .ftr__index { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-8) var(--gutter); }
@@ -60,7 +57,7 @@
 @container ftr (min-width: 720px) {
   .ftr { --mark-w: 34.5px; row-gap: var(--sp-10); padding-top: var(--sp-11); }
   .ftr__statement { flex-wrap: nowrap; }
-  .ftr__logo { width: auto; height: .774em; flex: none; }   /* wordmark caps = Newsreader caps */
+  .ftr__logo { width: auto; height: .883em; flex: none; }   /* x-height and caps both match the words beside it */
   .ftr__index { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .ftr__social li:first-child { width: auto; margin: 0 var(--sp-2) 0 0; }
 }
@@ -78,6 +75,5 @@
   .ftr__legal { grid-column: 1 / -1; grid-row: 5; }
 }
 
-/* an ink page meets an ink footer: a rule instead of the notch */
+/* an ink page meets an ink footer: a rule between them */
 .theme-ink ~ .site-footer { border-top: 1px solid var(--stone-800); }
-.theme-ink ~ .site-footer .ftr::before { display: none; }

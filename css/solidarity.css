@@ -1,0 +1,13 @@
+/* ═════════════════════════ Solidarity: the front ═════════════════════════ */
+
+/* statements and official positions, on the record: each quoted as issued, with its source */
+.stmts { display: grid; gap: var(--sp-7) var(--gutter); margin: 0; padding: 0; list-style: none; }
+.stmt { display: flex; flex-direction: column; gap: var(--sp-3); min-width: 0; padding-top: var(--sp-4); border-top: 2px solid var(--text); }
+.stmt__quote { margin: 0; }
+.stmt__quote p { margin: 0; font: italic 600 clamp(1.375rem, 1.2rem + .7cqi, 1.75rem)/1.22 var(--serif); letter-spacing: -.008em; text-wrap: balance; }
+.stmt__by { display: grid; gap: .2em; margin: 0; font: 500 var(--t-meta)/1.4 var(--sans); color: var(--meta); }
+.stmt__by b { font-weight: 700; color: var(--text); }
+.stmt .link-more { margin-top: auto; }                       /* the links line up at the foot of each column */
+@container (min-width: 1100px) {
+  .stmts { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
+}

@@ -101,7 +101,7 @@
     document.title = `${label}: all our coverage${SITE_NAME}`;
   }
 
-  const kind = ['opinion.html', 'video.html', 'photos.html'].includes(page) && slug('type');
+  const kind = ['opinion.html', 'video.html', 'photos.html', 'solidarity.html'].includes(page) && slug('type');
   if (kind) {                        // a filter of this front: its tab, and its link in the menu
     const href = `${page}?type=${kind}`;
     const tab = markTab(href);

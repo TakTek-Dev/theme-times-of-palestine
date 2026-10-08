@@ -22,7 +22,7 @@ Every template, with a thumbnail, is listed on
 
 | File | Template |
 | --- | --- |
-| `index.html` | Home: the lead story's photograph carrying its headline, beside "The day so far" at the same height; the Gaza front; the photo gallery; West Bank & Jerusalem in the same form as Gaza, with its updates; the context desk (analysis and opinion); most read; Solidarity |
+| `index.html` | Home: the lead story's photograph carrying its headline, beside "Today’s updates" at the same height; the Gaza front; West Bank & Jerusalem in the same form as Gaza, with its updates; Solidarity; the context desk (analysis and opinion); most read; the photo gallery last |
 | `article.html` | Story: headline, byline and sharing, lead photograph, body on the spine with side notes, pull quote (Arabic and English), step timeline, picture pair, standards note, author box, related stories |
 | `live.html` | Live coverage: status, key events (sticky on desktop), updates feed with "new updates" and "older updates", context column |
 | `section.html` | Section front (Gaza): giant title, topics, front strip, gallery, two-column archive, most read |
@@ -40,6 +40,7 @@ Every template, with a thumbnail, is listed on
 | `contact.html` | Contact form, the desks, secure tips, bureaus |
 | `search-empty.html` | Search with no results: what to try next, sections, latest stories |
 | `privacy.html` | Privacy, cookies and terms: contents on the spine that follow the reading, "in short" box |
+| `solidarity.html` | Solidarity front: marches, campaigns, statements and official positions; a front strip with its timed list, statements quoted as issued with their source, pictures |
 | `explainer.html` | Explainer: the short answer, numbered questions on the left that follow the reading, answers on the spine with steps, a figure and a quote, "what we don't know yet", key words, sources |
 | `video.html` | Video front: the lead film on ink with its chapters and what to watch next, a series ("One view of Jerusalem"), every video by place with running times |
 | `video-story.html` | Video: the player on ink with a standards note, chapters that jump to their moment, transcript, up next, more from the place |
@@ -68,7 +69,7 @@ Then open <http://localhost:8000>. Any static host works the same way
 
 ```
 .
-├── index.html … pages.html  twenty-three templates (see above)
+├── index.html … pages.html  twenty-four templates (see above)
 ├── partials/               head.html, header.html, footer.html: the source of truth for shared markup
 ├── css/
 │   ├── fonts.css           @font-face, plus metric-matched fallbacks (no layout shift on swap)
@@ -82,7 +83,7 @@ Then open <http://localhost:8000>. Any static host works the same way
 │   ├── people.css          columnists, the writer's page, the newsroom
 │   └── home.css · article.css · live.css · section.css · author.css · search.css · essay.css · about.css · 404.css
 │       · opinion.css · tag.css · archive.css · contact.css · legal.css · theme-index.css
-│       · video.css · photos.css · explainer.css
+│       · video.css · photos.css · explainer.css · solidarity.css
 ├── js/main.js              all behaviour, one deferred file, no dependencies
 ├── fonts/                  Newsreader, Figtree, Markazi Text (woff2, OFL licences alongside)
 ├── media/                  the sample video (MP4, H.264) and its captions file (a placeholder)
@@ -143,7 +144,7 @@ The tool is standard-library Python 3.8+.
   ink on hover and turn into a triskelion when open.
 - Photographs stay rectangular and are cropped by ratio only. Only one carries
   text: the home page's lead, whose headline sits on an ink scrim (dense behind
-  every line, at least 8:1 contrast) beside "The day so far", at its height.
+  every line, at least 8:1 contrast) beside "Today’s updates", at its height.
 
 Components answer to their own width through container queries, so the same
 markup works in a sidebar, a column or across the page. Breakpoints:
